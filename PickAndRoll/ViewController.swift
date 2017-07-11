@@ -47,7 +47,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         let camera = GMSCameraPosition.camera(withLatitude: 12.971599, longitude: 77.594563, zoom: 13.0)
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         mapView.isMyLocationEnabled = true
-          view = mapView
+         // view = mapView
         
         
         // User Location
@@ -127,17 +127,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     @IBAction func SignUp(_ sender: Any) {
         if let name = nameField.text,let email = emailField.text, let password = passwordField.text {
             FIRAuth.auth()?.createUser(withEmail: email, password: password) { (user, error) in
-//                let userSignupId: String = FIRAuth.auth()!.currentUser!.uid
-//                let userEmail : String = (FIRAuth.auth()!.currentUser?.email)!
-//                self.noOfUsers = 0
-//                var usernumber = ""
-//                usernumber = "User" + String(self.noOfUsers + 1)
-//                print("usernumber is -->\(usernumber)")
-//                self.ref?.child("UserDetails").child(usernumber).child("UID").setValue(userSignupId)
-//                self.ref?.child("UserDetails").child(usernumber).child("Name").setValue(name)
-//                self.ref?.child("UserDetails").child(usernumber).child("Email").setValue(userEmail)
-//                self.ref?.child("UserDetails").child(usernumber).child("lat").setValue(String(self.current_lattitude))
-//                self.ref?.child("UserDetails").child(usernumber).child("lng").setValue(String(self.current_longitude))
+
              
                 if let error = error {
                     print(error)

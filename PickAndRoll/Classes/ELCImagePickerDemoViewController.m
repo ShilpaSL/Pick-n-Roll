@@ -2,7 +2,7 @@
 //  ELCImagePickerDemoViewController.m
 //  ELCImagePickerDemo
 //
-//  Created by ELC on 9/9/10.
+//  Created by Shilpa on 20/06/17.
 //  Copyright 2010 ELC Technologies. All rights reserved.
 //
 
@@ -23,6 +23,7 @@
 @implementation ELCImagePickerDemoViewController
 NSString *imageID;
 FIRDatabaseReference *ref;
+
 
 
 //Using generated synthesizers
@@ -102,6 +103,9 @@ FIRDatabaseReference *ref;
 {
     [self dismissViewControllerAnimated:YES completion:nil];
     
+    NSUInteger *elements = [info count];
+   
+    NSMutableArray *imagesFromPhone=[[NSMutableArray alloc]init];
     for (UIView *v in [_scrollView subviews]) {
         [v removeFromSuperview];
     }
@@ -109,7 +113,7 @@ FIRDatabaseReference *ref;
     CGRect workingFrame = _scrollView.frame;
     workingFrame.origin.x = 0;
     
-   
+    
     
     NSMutableArray *images = [NSMutableArray arrayWithCapacity:[info count]];
     for (NSDictionary *dict in info) {
@@ -125,57 +129,59 @@ FIRDatabaseReference *ref;
                 
                 [_scrollView addSubview:imageview];
                 
-     
-//              
-//                //Create a new folder
-//                NSString *directoryName = @"Marriage";
-//                
-//                NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory,   NSUserDomainMask, YES);
-//                NSLog(@"Current directory path: %@", paths);
-//                NSString *applicationDirectory = [paths objectAtIndex:0];
-//                NSString *filePathAndDirectory = [applicationDirectory stringByAppendingPathComponent:directoryName];
-//                NSLog(@"Current new directory: %@", filePathAndDirectory);
-//                
-//                NSError *error;
-//                
-//                if (![[NSFileManager defaultManager] createDirectoryAtPath:filePathAndDirectory
-//                                               withIntermediateDirectories:YES
-//                                                                attributes:nil
-//                                                                     error:&error])
-//                {
-//                    NSLog(@"Create directory error: %@", error);
-//                }
-//                NSString *filenameimage = imageID;
-//           
-//                NSLog(@"Created file: %@", [filenameimage stringByAppendingString:@".jpg"]);
-//                
-//                NSLog(@"filename = %@", filenameimage);
-//                NSString *filePath = [filePathAndDirectory stringByAppendingPathComponent:[filenameimage stringByAppendingString:@".png"]];
-//                NSFileManager *manager = [NSFileManager defaultManager];
-//                // 1st, This funcion could allow you to create a file with initial contents.
-//                // 2nd, You could specify the attributes of values for the owner, group, and permissions.
-//                // Here we use nil, which means we use default values for these attibutes.
-//                // 3rd, it will return YES if NSFileManager create it successfully or it exists already.
-//                if ([manager createFileAtPath:filePath contents:nil attributes:nil]) {
-//                    NSLog(@"Created the File Successfully.");
-//                } else {
-//                    NSLog(@"Failed to Create the File");
-//                }
+                
+                //
+                //                //Create a new folder
+                //                NSString *directoryName = @"Marriage";
+                //
+                //                NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory,   NSUserDomainMask, YES);
+                //                NSLog(@"Current directory path: %@", paths);
+                //                NSString *applicationDirectory = [paths objectAtIndex:0];
+                //                NSString *filePathAndDirectory = [applicationDirectory stringByAppendingPathComponent:directoryName];
+                //                NSLog(@"Current new directory: %@", filePathAndDirectory);
+                //
+                //                NSError *error;
+                //
+                //                if (![[NSFileManager defaultManager] createDirectoryAtPath:filePathAndDirectory
+                //                                               withIntermediateDirectories:YES
+                //                                                                attributes:nil
+                //                                                                     error:&error])
+                //                {
+                //                    NSLog(@"Create directory error: %@", error);
+                //                }
+                //                NSString *filenameimage = imageID;
+                //
+                //                NSLog(@"Created file: %@", [filenameimage stringByAppendingString:@".jpg"]);
+                //
+                //                NSLog(@"filename = %@", filenameimage);
+                //                NSString *filePath = [filePathAndDirectory stringByAppendingPathComponent:[filenameimage stringByAppendingString:@".png"]];
+                //                NSFileManager *manager = [NSFileManager defaultManager];
+                //                // 1st, This funcion could allow you to create a file with initial contents.
+                //                // 2nd, You could specify the attributes of values for the owner, group, and permissions.
+                //                // Here we use nil, which means we use default values for these attibutes.
+                //                // 3rd, it will return YES if NSFileManager create it successfully or it exists already.
+                //                if ([manager createFileAtPath:filePath contents:nil attributes:nil]) {
+                //                    NSLog(@"Created the File Successfully.");
+                //                } else {
+                //                    NSLog(@"Failed to Create the File");
+                //                }
                 
                 //Store images to  server
                 
                 ref = [[FIRDatabase database] reference];
-                 NSLog(@"ref value %@", ref);
+                NSLog(@"ref value %@", ref);
                 FIRUser *currentUser = [FIRAuth auth].currentUser;
+                NSString *loggedinUid = [FIRAuth auth].currentUser.uid;
                 FIRStorageReference *storageRef = [[FIRStorage storage] reference];
                 NSLog(@"refe value %@", storageRef);
                 imageID = [[NSUUID UUID] UUIDString];
-//                NSString *imageName = [NSString stringWithFormat:@"Birthday/%@.jpg",imageID];
+                NSLog(@"imageID %@", imageID);
                 
-                NSString *imageName = [NSString stringWithFormat:@"Files/UserId/%@.jpg",imageID];
-
+                NSString *imageName1 = [NSString stringWithFormat:@"Files/%@/%@.jpg",loggedinUid,imageID];
+                NSLog(@"imageName1 %@", imageName1);
                 
-                FIRStorageReference *profilePicRef = [storageRef child:imageName];
+               // NSString *imageName = [NSString stringWithFormat:@"Files/UserId/%@.jpg",imageID];
+                FIRStorageReference *profilePicRef = [storageRef child:imageName1];
                 FIRStorageMetadata *metadata = [[FIRStorageMetadata alloc] init];
                 metadata.contentType = @"image/jpeg";
                 NSData *imageData = UIImageJPEGRepresentation(imageview.image, 0.8);
@@ -185,32 +191,40 @@ FIRDatabaseReference *ref;
                      {
                          NSString *profileImageURL = metadata.downloadURL.absoluteString;
                          NSLog(@"profileImageURL %@", profileImageURL);
-                         //[self saveValuesForUser: currentUser];
-                          [[[[ref child:@"Files"] child:@"UserId"] child:@"imagename"] setValue:profileImageURL];
+                         [imagesFromPhone addObject:profileImageURL];
+                         NSLog(@"imagesFromPhone %d", imagesFromPhone.count);
                          
-                                               }
+                         for (int i = 0; i < elements; i++)
+                         {
+                             NSString *imageCount = [NSString stringWithFormat:@"imageUrl%d",i];
+                             [[[[ref child:@"Files"] child:loggedinUid] child:imageCount] setValue:profileImageURL];
+                         }
+                         
+                     }
                      else if (error)
                      {
                          NSLog(@"Failed to Register User with profile image");
                      }
                  }];
-//                
-//                //Retrieve images                
-//                NSArray* dirs = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:filePathAndDirectory
-//                                                                                    error:NULL];
-//                NSMutableArray *mp3Files = [[NSMutableArray alloc] init];
-//                [dirs enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//                    NSString *filename = (NSString *)obj;
-//                    NSString *extension = [[filename pathExtension] lowercaseString];
-//                    if ([extension isEqualToString:@"png"]) {
-//                        [mp3Files addObject:[filePathAndDirectory stringByAppendingPathComponent:filename]];
-//                        
-//                        for (id obj in mp3Files)
-//                            NSLog(@"IMAGENAME: %@", obj);
-//                        
-//                    }
-//                }];
-
+            
+            
+                    //
+                //                //Retrieve images
+                //                NSArray* dirs = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:filePathAndDirectory
+                //                                                                                    error:NULL];
+                //                NSMutableArray *mp3Files = [[NSMutableArray alloc] init];
+                //                [dirs enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                //                    NSString *filename = (NSString *)obj;
+                //                    NSString *extension = [[filename pathExtension] lowercaseString];
+                //                    if ([extension isEqualToString:@"png"]) {
+                //                        [mp3Files addObject:[filePathAndDirectory stringByAppendingPathComponent:filename]];
+                //
+                //                        for (id obj in mp3Files)
+                //                            NSLog(@"IMAGENAME: %@", obj);
+                //
+                //                    }
+                //                }];
+                
                 
                 workingFrame.origin.x = workingFrame.origin.x + workingFrame.size.width;
             } else {
@@ -243,7 +257,7 @@ FIRDatabaseReference *ref;
     NSLog(@" directory images: %@", imageURL);
     
     
-        [_scrollView setPagingEnabled:YES];
+    [_scrollView setPagingEnabled:YES];
     [_scrollView setContentSize:CGSizeMake(workingFrame.origin.x, workingFrame.size.height)];
     
     

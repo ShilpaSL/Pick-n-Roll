@@ -80,20 +80,12 @@ class menuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         {
            print("Create Album Tapped")
             let mainstoryboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let newViewcontroller = mainstoryboard.instantiateViewController(withIdentifier: "CreateAlbumViewController") as! CreateFolderViewController
+            let newViewcontroller = mainstoryboard.instantiateViewController(withIdentifier: "CreateAlbumViewController") as! CreateAlbumVC
             let newFrontController = UINavigationController.init(rootViewController: newViewcontroller)
             
             revealviewcontroller.pushFrontViewController(newFrontController, animated: true)
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }

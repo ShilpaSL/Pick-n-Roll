@@ -24,6 +24,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>JSQMessagesViewController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>JSQSystemSoundPlayer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>KeychainSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,11 +72,6 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>13BB81C7D6FDB6A9E361E02A041E14B3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>38ACA430605AFB4229712A18BDDF5086</key>
 		<dict>
 			<key>primary</key>
@@ -82,17 +87,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A41940FDBF00871E77C672C8B80E9B4D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>A611FF972848585E9B03997FEF9FBBD5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>C052BEBFBD0AB5218CC64BA3450F6547</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C7DCF2B547F7871B9BFD74DE93B0E173</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D0581AF7BF4A6DA140D280B19ECC7BFF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E21783604D8C342B9668E78773510C9E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EC82393AD74CB97A4D85BE9C6A5AE57E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

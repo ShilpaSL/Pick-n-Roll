@@ -48,6 +48,9 @@ PODS:
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.8)
+  - JSQMessagesViewController (7.3.4):
+    - JSQSystemSoundPlayer (~> 2.0.1)
+  - JSQSystemSoundPlayer (2.0.1)
   - KeychainSwift (7.0.0)
   - SwiftyJSON (3.1.4)
 
@@ -60,6 +63,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - GoogleMaps
   - GooglePlaces
+  - JSQMessagesViewController
   - KeychainSwift
   - SwiftyJSON
 
@@ -77,9 +81,11 @@ SPEC CHECKSUMS:
   GooglePlaces: bca867d5e9da15384c794b945e4226848bc6e9d9
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
+  JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
+  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   KeychainSwift: b6947435dd78cc442c64a84ae648dd0e871cf448
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: f04bcc6adefd1940a160ac30671c8d5e8d95bd86
+PODFILE CHECKSUM: d04da2adb7ef12d2826ee1ea65a9bc3e914eac98
 
 COCOAPODS: 1.2.1
