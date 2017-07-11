@@ -297,7 +297,7 @@
         <!--Users List View Controller-->
         <scene sceneID="0Oq-uc-Aej">
             <objects>
-                <viewController id="3Fi-qW-1iB" customClass="UsersListViewController" customModule="PickAndRoll" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="showUsers" id="3Fi-qW-1iB" customClass="UsersListViewController" customModule="PickAndRoll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ElI-y8-Iuf"/>
                         <viewControllerLayoutGuide type="bottom" id="Okb-3I-5tk"/>
@@ -656,7 +656,7 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xVI-Od-GBt">
-                                                    <rect key="frame" x="35" y="160" width="125" height="21"/>
+                                                    <rect key="frame" x="33" y="160" width="127" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -667,7 +667,6 @@
                                         <connections>
                                             <outlet property="caption" destination="xVI-Od-GBt" id="cju-f1-xrU"/>
                                             <outlet property="imageView" destination="Hl6-ti-ofn" id="Y6a-2d-Qz2"/>
-                                            <segue destination="zbh-UY-8mu" kind="presentation" identifier="showAlbum" id="3ye-nD-Yg3"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -747,7 +746,7 @@
         <!--Photo From Albums View Controller-->
         <scene sceneID="uf2-QV-aP6">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="fpo-aL-EyI" customClass="PhotoFromAlbumsViewController" customModule="PickAndRoll" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="showAlbum" automaticallyAdjustsScrollViewInsets="NO" id="fpo-aL-EyI" customClass="PhotoFromAlbumsViewController" customModule="PickAndRoll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4ua-kf-wE6"/>
                         <viewControllerLayoutGuide type="bottom" id="zBj-xF-yCL"/>
@@ -851,7 +850,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ylT-Gv-qfu" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FpI-tg-VRk">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="FpI-tg-VRk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

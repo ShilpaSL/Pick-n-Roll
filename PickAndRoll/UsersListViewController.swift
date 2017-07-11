@@ -117,9 +117,9 @@ class UsersListViewController: UIViewController,UITableViewDataSource,UITableVie
         selectedUserIndex = indexPath.row
         insertImagesToDB()
         print("array uid is : \(arrayOfUid[indexPath.row])")
-        let myAlert = UIAlertController(title: "Share Album", message: "Want to share?", preferredStyle:UIAlertControllerStyle.alert);
+        let myAlert = UIAlertController(title: "Share Album", message: "Album shared", preferredStyle:UIAlertControllerStyle.alert);
         
-        let okAction = UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: nil);
+        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil);
         myAlert.addAction(okAction);
         self.present(myAlert,animated:true,completion:nil);
     }

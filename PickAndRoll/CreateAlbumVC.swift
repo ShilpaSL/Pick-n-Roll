@@ -66,26 +66,26 @@ class CreateAlbumVC: UIViewController,UINavigationBarDelegate,UINavigationContro
     }
     
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        // retrieve selected cell & fruit
-        
-        if segue.identifier == "showAlbum" {
-            
-            
-            let navVC = segue.destination as! UINavigationController
-            let detailViewController = navVC.viewControllers.first as! PhotoFromAlbumsViewController
-            detailViewController.imagesArryFolder = imagesFromDB
-        }
-        
-        else if segue.identifier == "showUserList" {
-            let navVC = segue.destination as! UINavigationController
-            let detailViewController = navVC.viewControllers.first as! UsersListViewController
-            detailViewController.imagesFromFolder = imagesFromDB
-            
-        }
-    }
-    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        
+//        // retrieve selected cell & fruit
+//        
+//        if segue.identifier == "showAlbum" {
+//            
+//            
+//            let navVC = segue.destination as! UINavigationController
+//            let detailViewController = navVC.viewControllers.first as! PhotoFromAlbumsViewController
+//            detailViewController.imagesArryFolder = imagesFromDB
+//        }
+//        
+//        else if segue.identifier == "showUserList" {
+//            let navVC = segue.destination as! UINavigationController
+//            let detailViewController = navVC.viewControllers.first as! UsersListViewController
+//            detailViewController.imagesFromFolder = imagesFromDB
+//            
+//        }
+//    }
+//    
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         return !isEditing
@@ -199,17 +199,33 @@ extension CreateAlbumVC : UICollectionViewDataSource {
 extension CreateAlbumVC : UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        highlightCell(indexPath, flag: true)
+       // highlightCell(indexPath, flag: true)
         print("collectionindex is-->\(indexPath.item)")
         
         let refreshAlert = UIAlertController(title: "Alert", message: "Want to share folder?", preferredStyle: UIAlertControllerStyle.alert)
         
         refreshAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
             print("Handle Ok logic here")
+            
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            
+            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "showUsers") as! UsersListViewController
+            nextViewController.imagesFromFolder = self.imagesFromDB
+            self.present(nextViewController, animated:true, completion:nil)
         }))
         
         refreshAlert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
             print("Handle Cancel Logic here")
+            
+            
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            
+            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "showAlbum") as! PhotoFromAlbumsViewController
+            nextViewController.imagesArryFolder = self.imagesFromDB
+            self.present(nextViewController, animated:true, completion:nil)
+            
+            
+        
         }))
         
         present(refreshAlert, animated: true, completion: nil)
