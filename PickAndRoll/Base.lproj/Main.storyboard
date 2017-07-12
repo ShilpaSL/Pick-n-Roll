@@ -7,7 +7,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -306,26 +305,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="135" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NVC-RP-ueb">
-                                <rect key="frame" x="16" y="20" width="343" height="603"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="77" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NVC-RP-ueb">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="135" id="SAK-fd-ip1" customClass="CustomCell" customModule="PickAndRoll" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="135"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="77" id="SAK-fd-ip1" customClass="CustomCell" customModule="PickAndRoll" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="77"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SAK-fd-ip1" id="wxd-n8-Im9">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="134.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="76.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rdI-BN-dNg">
                                                     <rect key="frame" x="8" y="17" width="140" height="92"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E4W-jx-fzD">
-                                                    <rect key="frame" x="173" y="17" width="111" height="33"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E4W-jx-fzD">
+                                                    <rect key="frame" x="173" y="17" width="129" height="60"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="1" green="0.56344169779999997" blue="0.95688490400000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -344,7 +342,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="0.60188948730000003" blue="0.3427630056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="RwX-eh-gkm"/>
@@ -402,7 +400,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Ee-o4-lWb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1484" y="1256.2218890554723"/>
+            <point key="canvasLocation" x="1567" y="1333"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="r4M-dp-PEf">
@@ -475,7 +473,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="imj-GG-vs1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2448.8000000000002" y="1225.6371814092954"/>
+            <point key="canvasLocation" x="2423" y="1333"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="HGy-Nd-MAy">
@@ -590,6 +588,14 @@
                                     <action selector="launchController:" destination="X4o-bi-Ffs" eventType="touchUpInside" id="sVj-w9-NK9"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pua-L3-FpO">
+                                <rect key="frame" x="29" y="598" width="289" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="BACK"/>
+                                <connections>
+                                    <segue destination="fpo-aL-EyI" kind="presentation" id="DjZ-Ml-pcf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.56344169779999997" blue="0.95688490400000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -600,7 +606,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Et5-e4-4Ao" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2151" y="1075"/>
+            <point key="canvasLocation" x="-18.399999999999999" y="1074.5127436281859"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="b2I-ZT-j1s">
@@ -703,19 +709,11 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="TKi-w7-GcE">
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="z31-BI-U4z">
-                                <connections>
-                                    <action selector="addNewItem:" destination="st3-KR-AEs" id="OHp-kl-c9E"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="save" id="t0c-UW-pMM">
-                                <connections>
-                                    <action selector="shareFolderTapped:" destination="st3-KR-AEs" id="h8N-AZ-LHD"/>
-                                    <segue destination="ylT-Gv-qfu" kind="presentation" identifier="showUserList" id="3qN-7e-IqV"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="z31-BI-U4z">
+                            <connections>
+                                <action selector="addNewItem:" destination="st3-KR-AEs" id="OHp-kl-c9E"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="QKV-R5-Pg7" id="gzw-cK-lBX"/>
@@ -756,7 +754,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YrN-CP-Xs5">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" red="1" green="0.56344169779999997" blue="0.95688490400000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Vq8-1W-pcR">
                                     <size key="itemSize" width="162" height="143"/>
@@ -810,7 +808,18 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SKx-WN-UWf">
                                 <rect key="frame" x="69" y="531" width="187" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="SHARE"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <segue destination="st3-KR-AEs" kind="presentation" id="lkU-JH-Hb9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FcV-vm-8vR">
+                                <rect key="frame" x="69" y="379" width="187" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Upload"/>
+                                <connections>
+                                    <segue destination="X4o-bi-Ffs" kind="presentation" id="zgE-jY-2lf"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.56344169776790809" blue="0.95688490398928316" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -825,7 +834,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cgP-oo-UVE" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-388" y="1076"/>
+            <point key="canvasLocation" x="-943" y="1075"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Jf2-BP-jqd">
@@ -843,7 +852,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nrg-LP-AWF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1314" y="1075"/>
+            <point key="canvasLocation" x="-1767" y="1075"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="unV-cb-enx">
@@ -868,4 +877,8 @@
         <image name="menu" width="32" height="32"/>
         <image name="profile" width="225" height="225"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="lkU-JH-Hb9"/>
+        <segue reference="DjZ-Ml-pcf"/>
+    </inferredMetricsTieBreakers>
 </document>

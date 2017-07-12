@@ -19,6 +19,7 @@ class UsersListViewController: UIViewController,UITableViewDataSource,UITableVie
     //  var names = [String]()
     var names = [String]()
     var imagesArryFolder = [String]()
+    var folderIndex = ""
     var profileImages = [UIImage]()
     var arrayOfUid = [String]()
     var username = ""
@@ -32,7 +33,15 @@ class UsersListViewController: UIViewController,UITableViewDataSource,UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         let myUserId = FIRAuth.auth()!.currentUser!.uid
+        
+        
+        
+        
+        
+        
+        
         userId = myUserId
+        print("folder index is--\(folderIndex)")
         print("myuserd id is-->\(myUserId)")
         print("imagesFromFolder----->>>\(imagesFromFolder.count)")
         //creating a NSURL
@@ -59,8 +68,6 @@ class UsersListViewController: UIViewController,UITableViewDataSource,UITableVie
                     self.username = name!
                     self.imagesArryFolder.append(profileImageUrl!)
                     self.names.append(self.username)
-                    
-                    
                 }
                 OperationQueue.main.addOperation({
                     //calling another function after fetching the json
@@ -113,7 +120,7 @@ class UsersListViewController: UIViewController,UITableViewDataSource,UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // performSegue(withIdentifier: CHAT_SEGUE, sender: nil)
-       print(self.imagesFromFolder.count)
+        print(self.imagesFromFolder.count)
         selectedUserIndex = indexPath.row
         insertImagesToDB()
         print("array uid is : \(arrayOfUid[indexPath.row])")
@@ -129,19 +136,23 @@ class UsersListViewController: UIViewController,UITableViewDataSource,UITableVie
         var ref2: FIRDatabaseReference!
         ref = FIRDatabase.database().reference()
         ref2 = ref.child("Files").child(arrayOfUid[selectedUserIndex])
-    for i in 0...self.imagesFromFolder.count-1 {
-    
-        let imageNumber = String(format:"%@%d", userId, i)
-       
-        var imageName = imagesFromFolder[i]
-         print("imagedetails is-->\(imageNumber) --- \(imageName)")
+        for i in 0...self.imagesFromFolder.count-1 {
+            
+            var folderImages1 = userId.appending(String(folderIndex))
+            
+          var folderImages =   String(folderIndex)!.appending(userId)
+            print("folderimages are-->\(folderImages) and \(folderImages1)")
+            let imageNumber = String(format:"%@%d", folderImages, i)
+            
+            var imageName = imagesFromFolder[i]
+            print("imagedetails is-->\(imageNumber) --- \(imageName)")
+            
+            ref2.child(imageNumber).setValue(imageName)
+            
+            
+        }
         
-        ref2.child(imageNumber).setValue(imageName)
-    
-
-    }
-
-    
+        
     }
     
     

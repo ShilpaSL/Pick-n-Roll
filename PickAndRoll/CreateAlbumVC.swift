@@ -201,6 +201,7 @@ extension CreateAlbumVC : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
        // highlightCell(indexPath, flag: true)
         print("collectionindex is-->\(indexPath.item)")
+        var columnindex = String(indexPath.item)
         
         let refreshAlert = UIAlertController(title: "Alert", message: "Want to share folder?", preferredStyle: UIAlertControllerStyle.alert)
         
@@ -211,6 +212,8 @@ extension CreateAlbumVC : UICollectionViewDelegate {
             
             let nextViewController = storyBoard.instantiateViewController(withIdentifier: "showUsers") as! UsersListViewController
             nextViewController.imagesFromFolder = self.imagesFromDB
+            nextViewController.folderIndex = columnindex
+            
             self.present(nextViewController, animated:true, completion:nil)
         }))
         

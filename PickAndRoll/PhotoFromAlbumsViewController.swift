@@ -21,7 +21,6 @@ class PhotoFromAlbumsViewController: UIViewController,UICollectionViewDelegate,U
     var imagesArryFolder = [String]()
     
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
