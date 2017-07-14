@@ -15,6 +15,8 @@
 @property (nonatomic, copy) NSArray *chosenImages;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+    
+  
 
 
 

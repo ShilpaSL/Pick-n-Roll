@@ -67,7 +67,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                                               longitude: userLocation!.coordinate.longitude, zoom: 13.0)
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         mapView.isMyLocationEnabled = true
-              self.view = mapView
+            //  self.view = mapView
         
         
         let marker = GMSMarker()

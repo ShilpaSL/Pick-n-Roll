@@ -23,7 +23,8 @@
 @implementation ELCImagePickerDemoViewController
     NSString *imageID;
     FIRDatabaseReference *ref;
-    
+NSUInteger dbImageLength;
+
     
     
     //Using generated synthesizers
@@ -40,6 +41,21 @@
     elcPicker.mediaTypes = @[(NSString *)kUTTypeImage, (NSString *)kUTTypeMovie]; //Supports image and movie types
     
     elcPicker.imagePickerDelegate = self;
+    
+    
+    ref = [[FIRDatabase database] reference];
+     NSString *myuserid = [FIRAuth auth].currentUser.uid;
+    [[[ref child:@"Files"] child:myuserid] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        NSDictionary *dict = snapshot.value;
+        dbImageLength = dict.count;
+        
+
+        NSLog(@"db values in obj%d",dict.count);
+        
+    } withCancelBlock:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error.localizedDescription);
+    }];
+    
     
     [self presentViewController:elcPicker animated:YES completion:nil];
 }
@@ -100,6 +116,11 @@
         }
     }
     
+   
+
+ 
+    
+    
 #pragma mark ELCImagePickerControllerDelegate Methods
     
 - (void)elcImagePickerController:(ELCImagePickerController *)picker didFinishPickingMediaWithInfo:(NSArray *)info
@@ -123,6 +144,13 @@
                 if ([dict objectForKey:UIImagePickerControllerOriginalImage]){
                     UIImage* image=[dict objectForKey:UIImagePickerControllerOriginalImage];
                     [images addObject:image];
+                    
+                    NSUserDefaults *defauts = [NSUserDefaults standardUserDefaults];
+                    NSData *data = UIImagePNGRepresentation(image);
+                    [defauts setObject:data forKey:@"savedImage"];
+                    [defauts synchronize];
+                    
+                    
                     
                     UIImageView *imageview = [[UIImageView alloc] initWithImage:image];
                     [imageview setContentMode:UIViewContentModeScaleAspectFit];
@@ -161,6 +189,8 @@
                     NSLog(@"imageName1 %@", imageName1);
                     
                     
+                    
+                    
                     //Create a local new folder
                     NSString *directoryName = imageName1;
                     
@@ -181,47 +211,49 @@
                     }
 
                     
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    // NSString *imageName = [NSString stringWithFormat:@"Files/UserId/%@.jpg",imageID];
-                    FIRStorageReference *profilePicRef = [storageRef child:imageName1];
-                    FIRStorageMetadata *metadata = [[FIRStorageMetadata alloc] init];
-                    metadata.contentType = @"image/jpeg";
-                    NSData *imageData = UIImageJPEGRepresentation(imageview.image, 0.8);
-                    [profilePicRef putData:imageData metadata:metadata completion:^(FIRStorageMetadata *metadata, NSError *error)
-                     {
-                         if (!error)
-                         {
-                             NSString *profileImageURL = metadata.downloadURL.absoluteString;
-                             NSLog(@"profileImageURL %@", profileImageURL);
-                             [imagesFromPhone addObject:profileImageURL];
-                             if([imagesFromPhone containsObject:profileImageURL]) {
+                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                            //Do background work
+                            
+                            // NSString *imageName = [NSString stringWithFormat:@"Files/UserId/%@.jpg",imageID];
+                            FIRStorageReference *profilePicRef = [storageRef child:imageName1];
+                            FIRStorageMetadata *metadata = [[FIRStorageMetadata alloc] init];
+                            metadata.contentType = @"image/jpeg";
+                            NSData *imageData = UIImageJPEGRepresentation(imageview.image, 0.8);
+                            [profilePicRef putData:imageData metadata:metadata completion:^(FIRStorageMetadata *metadata, NSError *error)
+                             {
+                                 if (!error)
+                                 {
+                                     NSString *profileImageURL = metadata.downloadURL.absoluteString;
+                                     NSLog(@"profileImageURL %@", profileImageURL);
+                                     [imagesFromPhone addObject:profileImageURL];
+                                     if([imagesFromPhone containsObject:profileImageURL]) {
+                                         
+                                         int index = [imagesFromPhone indexOfObject: profileImageURL];
+                                         int totalIndex = dbImageLength + (index+1);
+                                         
+                                         
+                                         NSString *imageCount = [NSString stringWithFormat:@"%@%d",loggedinUid,totalIndex];
+                                           [[[[ref child:@"Files"] child:loggedinUid] child:imageCount] setValue:profileImageURL];
+                                     } else {
+                                         NSLog(@"not found");
+                                     }
+                                     
+                                     
+                                 }
+                                 else if (error)
+                                 {
+                                     NSLog(@"Failed to Register User with profile image");
+                                 }
                                  
-                                 int index = [imagesFromPhone indexOfObject: profileImageURL];
-                                 
-                                 NSLog(@"found %d",index);
-                                 NSString *imageCount = [NSString stringWithFormat:@"%@%d",loggedinUid,index];
-                               //  [[[[ref child:@"Files"] child:loggedinUid] child:imageCount] setValue:profileImageURL];
-                             } else {
-                                 NSLog(@"not found");
-                             }
-                             
-                             
-                         }
-                         else if (error)
-                         {
-                             NSLog(@"Failed to Register User with profile image");
-                         }
-                         
-                     }];
+                             }];
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                //Update UI
+                            });
+                        });
+                    
+                   
+
+                 
                     //
                     //                //Retrieve images
                     //                NSArray* dirs = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:filePathAndDirectory
@@ -241,6 +273,7 @@
                     
                     
                     workingFrame.origin.x = workingFrame.origin.x + workingFrame.size.width;
+                            
                 } else {
                     NSLog(@"UIImagePickerControllerReferenceURL = %@", dict);
                 }

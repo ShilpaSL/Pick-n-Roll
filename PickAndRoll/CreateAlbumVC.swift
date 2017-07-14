@@ -49,9 +49,9 @@ class CreateAlbumVC: UIViewController,UINavigationBarDelegate,UINavigationContro
             print("length is --\(self.imagesFromDB.count)")
             
         })
-        // Do any additional setup after loading the view.
+      
     }
-
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
@@ -225,6 +225,10 @@ extension CreateAlbumVC : UICollectionViewDelegate {
             
             let nextViewController = storyBoard.instantiateViewController(withIdentifier: "showAlbum") as! PhotoFromAlbumsViewController
             nextViewController.imagesArryFolder = self.imagesFromDB
+            print("alert count is-->\(self.imagesFromDB.count)")
+            
+            
+           
             self.present(nextViewController, animated:true, completion:nil)
             
             

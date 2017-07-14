@@ -17,7 +17,7 @@ class menuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
      //   ManuNameArray = ["Home","MyProfile","Invite friends","Create Album","Map","Settings","Logout"]
-        ManuNameArray = ["Home","MyProfile","Invite friends","Create Album"]
+        ManuNameArray = ["Home","MyProfile","Map","Create Album"]
         iconArray = [UIImage(named:"home")!,UIImage(named:"message")!,UIImage(named:"map")!,UIImage(named:"setting")!]
         
         imgProfile.layer.borderWidth = 2
@@ -75,6 +75,12 @@ class menuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         if cell.lblMenuname.text! == "Map"
         {
             print("Map Tapped")
+            
+            let mainstoryboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let newViewcontroller = mainstoryboard.instantiateViewController(withIdentifier: "MapVC") as! DisplayMapViewController
+            let newFrontController = UINavigationController.init(rootViewController: newViewcontroller)
+            
+            revealviewcontroller.pushFrontViewController(newFrontController, animated: true)
         }
         if cell.lblMenuname.text! == "Create Album"
         {

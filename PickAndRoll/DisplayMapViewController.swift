@@ -31,7 +31,8 @@ class DisplayMapViewController: UIViewController,CLLocationManagerDelegate {
         let camera = GMSCameraPosition.camera(withLatitude: 12.971599, longitude: 77.594563, zoom: 13.0)
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         mapView.isMyLocationEnabled = true
-        view = mapView
+        //  mapView.settings.myLocationButton = true
+     //   view = mapView
         
         
         // User Location
@@ -113,7 +114,7 @@ class DisplayMapViewController: UIViewController,CLLocationManagerDelegate {
                         
                         let marker = GMSMarker()
                         marker.position = CLLocationCoordinate2D(latitude: self.lattitudes[i], longitude: self.longitudes[i])
-                        marker.icon = GMSMarker.markerImage(with: UIColor.blue)
+                        marker.icon = GMSMarker.markerImage(with: UIColor.red)
                         marker.title = self.names[i]
                         marker.map = self.mapView
                     }
