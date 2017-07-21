@@ -20,6 +20,11 @@ class PhotoFromAlbumsViewController: UIViewController,UICollectionViewDelegate,U
     
     var imagesArryFolder = [String]()
     var bigtitle: UIImage!
+    var URL_IMAGES = ""
+    
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    //  var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     
     
     override func viewDidLoad() {
@@ -28,52 +33,52 @@ class PhotoFromAlbumsViewController: UIViewController,UICollectionViewDelegate,U
         let myUserId = FIRAuth.auth()!.currentUser!.uid
         print("myuserd id is-->\(myUserId)")
         
-        print("FOLDER ARRAY -->\(imagesArryFolder.count)")
+        
+        print("FOLDER ARRAY -->\(imagesArryFolder.count) and \(URL_IMAGES)")
         
         self.imageArrayLength = self.imagesArryFolder.count
         
         print("imageArrayLength is --\(self.imageArrayLength)")
         
         
-        if(self.imageArrayLength == 0){
-            print("No photos")
-        }
-        else{
-            
-            for i in 0...self.imageArrayLength-1 {
-                
-                if let url = NSURL(string: self.imagesArryFolder[i] ) {
-                    
-                    if let imageData = NSData(contentsOf: url as URL) {
-                        let str64 = imageData.base64EncodedData(options: .lineLength64Characters)
-                        let data: NSData = NSData(base64Encoded: str64 , options: .ignoreUnknownCharacters)!
-                        let dataImage = UIImage(data: data as Data)
-                        self.bigtitle = dataImage
-                        self.test.append(self.bigtitle)
-                        
-                        do {
-                            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-                            print("path is \(documentsURL)")
-                            let fileURL = documentsURL.appendingPathComponent("\(String(i)).png")
-                            if let pngImageData = UIImagePNGRepresentation(dataImage!) {
-                                try pngImageData.write(to: fileURL, options: .atomic)
-                            }
-                        } catch { }
-                    }
-                    
-                }
-                
-            }
-        }
+//        if(self.imageArrayLength == 0){
+//            print("No photos")
+//        }
+//        else{
+//            
+//            for i in 0...self.imageArrayLength-1 {
+//                
+//                if let url = NSURL(string: self.imagesArryFolder[i] ) {
+//                    
+//                    if let imageData = NSData(contentsOf: url as URL) {
+//                        let str64 = imageData.base64EncodedData(options: .lineLength64Characters)
+//                        let data: NSData = NSData(base64Encoded: str64 , options: .ignoreUnknownCharacters)!
+//                        let dataImage = UIImage(data: data as Data)
+//                        self.bigtitle = dataImage
+//                        self.test.append(self.bigtitle)
+//                        
+//                        do {
+//                            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+//                            
+//                            let fileURL = documentsURL.appendingPathComponent("\(String(i)).png")
+//                            if let pngImageData = UIImagePNGRepresentation(dataImage!) {
+//                                try pngImageData.write(to: fileURL, options: .atomic)
+//                            }
+//                        } catch { }
+//                    }
+//                    
+//                }
+//                
+//            }
+//        }
+//        
         
         
-//         let data1 = UserDefaults.standard.object(forKey: "savedImage")
-//        let dataImage = UIImage(data: data1 as! Data)
-//        self.test.append(dataImage!)
-//        print("data is\(data1)")
-        
-       
-          }
+    }
+    
+    
+    //this function is fetching the json from URL
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -90,8 +95,27 @@ class PhotoFromAlbumsViewController: UIViewController,UICollectionViewDelegate,U
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
         //   cell.imgImage.image = imageName[indexPath.row]
         print(indexPath.row)
-        //  imageArrayLength = imagesFromDB.count
-        cell.imgImage.image = self.test[indexPath.row]
+       
+        cell.lblName.isHidden = true
+        
+                for i in 0...self.imagesArryFolder.count-1 {
+                    print("test")
+                    if let imageUrl = URL(string: self.imagesArryFolder[i]) {
+                        URLSession.shared.dataTask(with: URLRequest(url: imageUrl)) { (data, response, error) in
+                            if let data = data {
+                                DispatchQueue.main.sync {
+                                    cell.imgImage.image = UIImage(data: data)
+        
+                                }
+                            }
+                            }.resume()
+        
+                    }
+                }
+        
+        
+
+       // cell.imgImage.image = self.test[indexPath.row]
         
         return cell
     }

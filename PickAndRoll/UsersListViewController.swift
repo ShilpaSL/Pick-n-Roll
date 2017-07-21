@@ -36,10 +36,6 @@ class UsersListViewController: UIViewController,UITableViewDataSource,UITableVie
         
         
         
-        
-        
-        
-        
         userId = myUserId
         print("folder index is--\(folderIndex)")
         print("myuserd id is-->\(myUserId)")
@@ -68,6 +64,9 @@ class UsersListViewController: UIViewController,UITableViewDataSource,UITableVie
                     self.username = name!
                     self.imagesArryFolder.append(profileImageUrl!)
                     self.names.append(self.username)
+                    
+                   
+                    
                 }
                 OperationQueue.main.addOperation({
                     //calling another function after fetching the json
@@ -140,7 +139,7 @@ class UsersListViewController: UIViewController,UITableViewDataSource,UITableVie
             
             var folderImages1 = userId.appending(String(folderIndex))
             
-          var folderImages =   String(folderIndex)!.appending(userId)
+            var folderImages =   String(folderIndex)!.appending(userId)
             print("folderimages are-->\(folderImages) and \(folderImages1)")
             let imageNumber = String(format:"%@%d", folderImages, i)
             

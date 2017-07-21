@@ -22,6 +22,10 @@ pod 'Firebase/Storage'
 pod 'SwiftyJSON'
 pod 'Alamofire'
 pod 'AlamofireImage'
+pod 'GoogleSignIn'
+pod 'FBSDKCoreKit'
+pod 'FBSDKShareKit'
+pod 'FBSDKLoginKit'
 
 
   target 'PickAndRollUITests' do

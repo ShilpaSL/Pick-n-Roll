@@ -2,24 +2,28 @@
 //  SignOutCode.swift
 //  Authorize
 //
-//  Created by Kasey Schlaudt on 1/1/17.
-//  Copyright © 2017 Kasey Schlaudt. All rights reserved.
+//  Created by Shilpa S L
+//  Copyright © 2017 Shilpa S L. All rights reserved.
 //
 
 import UIKit
 import Firebase
-import KeychainSwift
+
+import GoogleSignIn
 
 class SignOutCode: UIViewController {
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-    
+        
         // Do any additional setup after loading the view.
-    }
 
+        print("signout id is-->\(FIRAuth.auth()!.currentUser!.uid)")
+    }
+    
+    
+    
     @IBAction func SignOut (_ sender: Any){
         let firebaseAuth = FIRAuth.auth()
         do {
@@ -27,9 +31,11 @@ class SignOutCode: UIViewController {
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
+        
+        
         DataService().keyChain.delete("uid")
         dismiss(animated: true, completion: nil)
     }
-
+    
     
 }

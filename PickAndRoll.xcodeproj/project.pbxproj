@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		3BEBEB983B6017612FA8F435 /* Pods_PickAndRollTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC5A27FB04A639A7FBB2AC57 /* Pods_PickAndRollTests.framework */; };
+		832158DB1F1E1B3B006FEF79 /* HomeMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832158DA1F1E1B3A006FEF79 /* HomeMenuViewController.swift */; };
+		8321591A1F1F853B006FEF79 /* ToDoListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832159191F1F853B006FEF79 /* ToDoListTableViewController.swift */; };
+		8321591C1F1F854A006FEF79 /* NewToDoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8321591B1F1F854A006FEF79 /* NewToDoTableViewController.swift */; };
+		8321591E1F208FA0006FEF79 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8321591D1F208F9F006FEF79 /* ForgotPasswordViewController.swift */; };
 		835386B51F0CB24900D9114F /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835386B41F0CB24900D9114F /* CollectionViewCell.swift */; };
 		835386B91F0CB2B500D9114F /* PhotoFromAlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835386B81F0CB2B500D9114F /* PhotoFromAlbumsViewController.swift */; };
 		835386BB1F0E54BB00D9114F /* UsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835386BA1F0E54BA00D9114F /* UsersListViewController.swift */; };
@@ -84,6 +88,10 @@
 		6D11A7D8DF22F5CCFA3C5E1B /* Pods-PickAndRollTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PickAndRollTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PickAndRollTests/Pods-PickAndRollTests.release.xcconfig"; sourceTree = "<group>"; };
 		78D7D20BA17916361D16C891 /* Pods-PickAndRoll.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PickAndRoll.release.xcconfig"; path = "Pods/Target Support Files/Pods-PickAndRoll/Pods-PickAndRoll.release.xcconfig"; sourceTree = "<group>"; };
 		811F1F001F5F0F7237F59924 /* Pods_PickAndRollUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PickAndRollUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		832158DA1F1E1B3A006FEF79 /* HomeMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeMenuViewController.swift; path = ../HomeMenuViewController.swift; sourceTree = "<group>"; };
+		832159191F1F853B006FEF79 /* ToDoListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListTableViewController.swift; sourceTree = "<group>"; };
+		8321591B1F1F854A006FEF79 /* NewToDoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewToDoTableViewController.swift; sourceTree = "<group>"; };
+		8321591D1F208F9F006FEF79 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		835386B41F0CB24900D9114F /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		835386B81F0CB2B500D9114F /* PhotoFromAlbumsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoFromAlbumsViewController.swift; sourceTree = "<group>"; };
 		835386BA1F0E54BA00D9114F /* UsersListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersListViewController.swift; sourceTree = "<group>"; };
@@ -208,6 +216,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		832159161F1F83DE006FEF79 /* CreateNewFolder */ = {
+			isa = PBXGroup;
+			children = (
+				832159191F1F853B006FEF79 /* ToDoListTableViewController.swift */,
+				8321591B1F1F854A006FEF79 /* NewToDoTableViewController.swift */,
+			);
+			name = CreateNewFolder;
+			sourceTree = "<group>";
+		};
 		835386B31F0CB1FE00D9114F /* CollectioViewForPhotos */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,10 +308,12 @@
 		83E5EEFF1EF3B7D80069BA8E /* PickAndRoll */ = {
 			isa = PBXGroup;
 			children = (
+				832159161F1F83DE006FEF79 /* CreateNewFolder */,
 				83EB8D001F1487F100FB9ECF /* NewAlbum */,
 				835386B31F0CB1FE00D9114F /* CollectioViewForPhotos */,
 				83B596D31F023E7F00F200A6 /* Classes */,
 				83BC42C71EF3ED4700ADBD71 /* MenuCell.swift */,
+				832158DA1F1E1B3A006FEF79 /* HomeMenuViewController.swift */,
 				83BC42C91EF3ED4E00ADBD71 /* menuViewController.swift */,
 				83B596A61F02282D00F200A6 /* MessageViewController.swift */,
 				83BC42C31EF3E9E200ADBD71 /* SWRevealViewController.h */,
@@ -318,6 +337,7 @@
 				839804891EF90610003A02F3 /* ViewControllerhandler.swift */,
 				8398048D1EFBCF3C003A02F3 /* DisplayContactsViewController.swift */,
 				835386BA1F0E54BA00D9114F /* UsersListViewController.swift */,
+				8321591D1F208F9F006FEF79 /* ForgotPasswordViewController.swift */,
 			);
 			path = PickAndRoll;
 			sourceTree = "<group>";
@@ -663,6 +683,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83B596FC1F023E7F00F200A6 /* ELCImagePickerDemoAppDelegate.m in Sources */,
+				832158DB1F1E1B3B006FEF79 /* HomeMenuViewController.swift in Sources */,
 				83EB8D041F14884800FB9ECF /* FruitCell.swift in Sources */,
 				83BC42C81EF3ED4700ADBD71 /* MenuCell.swift in Sources */,
 				835386B91F0CB2B500D9114F /* PhotoFromAlbumsViewController.swift in Sources */,
@@ -686,12 +707,15 @@
 				83E5EF031EF3B7D80069BA8E /* ViewController.swift in Sources */,
 				83B596A71F02282D00F200A6 /* MessageViewController.swift in Sources */,
 				83E5EF011EF3B7D80069BA8E /* AppDelegate.swift in Sources */,
+				8321591C1F1F854A006FEF79 /* NewToDoTableViewController.swift in Sources */,
 				83EB8D061F14884F00FB9ECF /* FruitsHeaderView.swift in Sources */,
 				83B596F11F023E7F00F200A6 /* ELCAsset.m in Sources */,
 				83BC42CE1EF3F5AA00ADBD71 /* DisplayMapViewController.swift in Sources */,
 				83BC42BE1EF3DBF500ADBD71 /* SideMenuViewController.swift in Sources */,
 				8398048E1EFBCF3D003A02F3 /* DisplayContactsViewController.swift in Sources */,
 				83BC42C51EF3E9ED00ADBD71 /* SWRevealViewController.m in Sources */,
+				8321591E1F208FA0006FEF79 /* ForgotPasswordViewController.swift in Sources */,
+				8321591A1F1F853B006FEF79 /* ToDoListTableViewController.swift in Sources */,
 				839804881EF7E689003A02F3 /* ImagePickViewControllerhandler.swift in Sources */,
 				83BC42CA1EF3ED4E00ADBD71 /* menuViewController.swift in Sources */,
 			);
@@ -851,7 +875,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 2CRRHEMXQH;
 				INFOPLIST_FILE = PickAndRoll/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cispl.PickAndRoll;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -869,7 +893,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 2CRRHEMXQH;
 				INFOPLIST_FILE = PickAndRoll/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cispl.PickAndRoll;
 				PRODUCT_NAME = "$(TARGET_NAME)";

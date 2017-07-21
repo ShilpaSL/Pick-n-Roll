@@ -12,7 +12,7 @@ import FirebaseDatabase
 
 
 class CreateAlbumVC: UIViewController,UINavigationBarDelegate,UINavigationControllerDelegate {
-
+    
     
     let identifier = "CellIdentifier"
     let headerViewIdentifier = "HeaderView"
@@ -20,9 +20,11 @@ class CreateAlbumVC: UIViewController,UINavigationBarDelegate,UINavigationContro
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var toolBar: UIToolbar!
-    
     let dataSource = DataSource()
     var imagesFromDB = [String]()
+    var folderNames = [String]()
+    var dbFolderNames = [String]()
+    var userId = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,10 +34,11 @@ class CreateAlbumVC: UIViewController,UINavigationBarDelegate,UINavigationContro
         
         navigationItem.leftBarButtonItem = editButtonItem
         toolBar.isHidden = true
-
+        
         
         let myUserId = FIRAuth.auth()!.currentUser!.uid
         print("myuserd id is-->\(myUserId)")
+        userId = myUserId
         
         
         let dbRef = FIRDatabase.database().reference().child("Files").child(myUserId)
@@ -49,7 +52,14 @@ class CreateAlbumVC: UIViewController,UINavigationBarDelegate,UINavigationContro
             print("length is --\(self.imagesFromDB.count)")
             
         })
-      
+        
+        let defaults = UserDefaults.standard
+       dbFolderNames = defaults.stringArray(forKey: "SavedStringArray") ?? [String]()
+        
+        
+        
+
+        
     }
     
     
@@ -66,27 +76,27 @@ class CreateAlbumVC: UIViewController,UINavigationBarDelegate,UINavigationContro
     }
     
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        
-//        // retrieve selected cell & fruit
-//        
-//        if segue.identifier == "showAlbum" {
-//            
-//            
-//            let navVC = segue.destination as! UINavigationController
-//            let detailViewController = navVC.viewControllers.first as! PhotoFromAlbumsViewController
-//            detailViewController.imagesArryFolder = imagesFromDB
-//        }
-//        
-//        else if segue.identifier == "showUserList" {
-//            let navVC = segue.destination as! UINavigationController
-//            let detailViewController = navVC.viewControllers.first as! UsersListViewController
-//            detailViewController.imagesFromFolder = imagesFromDB
-//            
-//        }
-//    }
-//    
-
+    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //
+    //        // retrieve selected cell & fruit
+    //
+    //        if segue.identifier == "showAlbum" {
+    //
+    //
+    //            let navVC = segue.destination as! UINavigationController
+    //            let detailViewController = navVC.viewControllers.first as! PhotoFromAlbumsViewController
+    //            detailViewController.imagesArryFolder = imagesFromDB
+    //        }
+    //
+    //        else if segue.identifier == "showUserList" {
+    //            let navVC = segue.destination as! UINavigationController
+    //            let detailViewController = navVC.viewControllers.first as! UsersListViewController
+    //            detailViewController.imagesFromFolder = imagesFromDB
+    //
+    //        }
+    //    }
+    //
+    
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         return !isEditing
     }
@@ -160,8 +170,11 @@ class CreateAlbumVC: UIViewController,UINavigationBarDelegate,UINavigationContro
     
 }
 
+
+
 // MARK:- UICollectionView DataSource
 extension CreateAlbumVC : UICollectionViewDataSource {
+    
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return dataSource.groups.count
@@ -180,7 +193,7 @@ extension CreateAlbumVC : UICollectionViewDataSource {
         let name = fruit.name!
         
         cell.imageView.image = UIImage(named: "folder")
-        cell.caption.text = "New Folder"
+        
         
         return cell
     }
@@ -199,43 +212,97 @@ extension CreateAlbumVC : UICollectionViewDataSource {
 extension CreateAlbumVC : UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       // highlightCell(indexPath, flag: true)
+        // highlightCell(indexPath, flag: true)
         print("collectionindex is-->\(indexPath.item)")
         var columnindex = String(indexPath.item)
         
-        let refreshAlert = UIAlertController(title: "Alert", message: "Want to share folder?", preferredStyle: UIAlertControllerStyle.alert)
         
-        refreshAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
-            print("Handle Ok logic here")
-            
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            
-            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "showUsers") as! UsersListViewController
-            nextViewController.imagesFromFolder = self.imagesFromDB
-            nextViewController.folderIndex = columnindex
-            
-            self.present(nextViewController, animated:true, completion:nil)
-        }))
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier,for:indexPath) as! FruitCell
         
-        refreshAlert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
-            print("Handle Cancel Logic here")
-            
-            
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            
-            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "showAlbum") as! PhotoFromAlbumsViewController
-            nextViewController.imagesArryFolder = self.imagesFromDB
-            print("alert count is-->\(self.imagesFromDB.count)")
-            
-            
-           
-            self.present(nextViewController, animated:true, completion:nil)
-            
-            
+//             // var newUser: User!
+//        var newUser = ""
+//        let alertController = UIAlertController(title: "Rename folder", message: "Please tell me your name:", preferredStyle: .alert)
+//        
+//        alertController.addAction(UIAlertAction(title: "Save", style: .default, handler: {
+//            alert -> Void in
+//            let fNameField = alertController.textFields![0] as UITextField
+//            // let lNameField = alertController.textFields![1] as UITextField
+//            
+//            if fNameField.text != "" {
+//                //    self.newUser = user fNameField.text!, ln: lNameField.text!)
+//                //TODO: Save user data in persistent storage - a tutorial for another time
+//                
+//                self.folderNames.append(fNameField.text!)
+//                print(fNameField.text!)
+////                let defaults = UserDefaults.standard
+////                defaults.set(self.folderNames, forKey: "SavedStringArray")
+//              
+//                
+//                
+//            } else {
+//                let errorAlert = UIAlertController(title: "Error", message: "Please input  name", preferredStyle: .alert)
+//                errorAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: {
+//                    alert -> Void in
+//                    self.present(alertController, animated: true, completion: nil)
+//                }))
+//                self.present(errorAlert, animated: true, completion: nil)
+//            }
+//        }))
+//        
+//        alertController.addTextField(configurationHandler: { (textField) -> Void in
+//            textField.placeholder = "First Name"
+//            textField.textAlignment = .center
+//        })
+//        
+//        
+//        self.present(alertController, animated: true, completion: nil)
         
-        }))
         
-        present(refreshAlert, animated: true, completion: nil)
+        
+        
+        
+        
+                let refreshAlert = UIAlertController(title: "Alert", message: "Want to share folder?", preferredStyle: UIAlertControllerStyle.alert)
+        
+                refreshAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
+                    print("Handle Ok logic here")
+        
+                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        
+                    let nextViewController = storyBoard.instantiateViewController(withIdentifier: "showUsers") as! UsersListViewController
+                    nextViewController.imagesFromFolder = self.imagesFromDB
+                    nextViewController.folderIndex = columnindex
+        
+                    if(self.imagesFromDB.count == 0){
+                        let nextVC = storyBoard.instantiateViewController(withIdentifier: "showAlbum") as! PhotoFromAlbumsViewController
+                        self.present(nextVC, animated:true, completion:nil)
+        
+                    }
+                    else {
+        
+                    self.present(nextViewController, animated:true, completion:nil)
+                    }
+                }))
+        
+                refreshAlert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
+                    print("Handle Cancel Logic here")
+        
+                    var URL_IMAGES_DB = "https://pickandroll-e0897.firebaseio.com/Files/\(self.userId).json"
+                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        
+                    let nextViewController = storyBoard.instantiateViewController(withIdentifier: "showAlbum") as! PhotoFromAlbumsViewController
+                    nextViewController.imagesArryFolder = self.imagesFromDB
+                    nextViewController.URL_IMAGES = URL_IMAGES_DB
+                    print("alert count is-->\(self.imagesFromDB.count)")
+        
+        
+                    self.present(nextViewController, animated:true, completion:nil)
+        
+        
+        
+                }))
+        
+                present(refreshAlert, animated: true, completion: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {

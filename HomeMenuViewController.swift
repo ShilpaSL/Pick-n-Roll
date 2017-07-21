@@ -12,9 +12,7 @@ class HomeMenuViewController: UIViewController,UINavigationControllerDelegate, U
 
     @IBOutlet weak var imageView: UIImageView!
     var imagePicker: UIImagePickerController!
-    
-    
-    
+        
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -46,11 +46,18 @@ NSUInteger dbImageLength;
     ref = [[FIRDatabase database] reference];
      NSString *myuserid = [FIRAuth auth].currentUser.uid;
     [[[ref child:@"Files"] child:myuserid] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        NSDictionary *dict = snapshot.value;
-        dbImageLength = dict.count;
         
+        if(snapshot.exists) {
+            NSDictionary *dict = snapshot.value;
+            NSLog(@"dict elements %d", dict.count);
+            
+            dbImageLength = dict.count;
+        }
+        else {
+            dbImageLength = 0;
 
-        NSLog(@"db values in obj%d",dict.count);
+        }
+   
         
     } withCancelBlock:^(NSError * _Nonnull error) {
         NSLog(@"%@", error.localizedDescription);
@@ -116,12 +123,7 @@ NSUInteger dbImageLength;
         }
     }
     
-   
-
- 
-    
-    
-#pragma mark ELCImagePickerControllerDelegate Methods
+  #pragma mark ELCImagePickerControllerDelegate Methods
     
 - (void)elcImagePickerController:(ELCImagePickerController *)picker didFinishPickingMediaWithInfo:(NSArray *)info
     {
