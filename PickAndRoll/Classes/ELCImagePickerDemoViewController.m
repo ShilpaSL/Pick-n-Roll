@@ -17,6 +17,7 @@
 @interface ELCImagePickerDemoViewController ()
     
     @property (nonatomic, strong) ALAssetsLibrary *specialLibrary;
+
     
     @end
 
@@ -25,8 +26,6 @@
     FIRDatabaseReference *ref;
 NSUInteger dbImageLength;
 
-    
-    
     //Using generated synthesizers
 - (IBAction)launchController:(id)sender {
     
@@ -235,7 +234,8 @@ NSUInteger dbImageLength;
                                          
                                          
                                          NSString *imageCount = [NSString stringWithFormat:@"%@%d",loggedinUid,totalIndex];
-                                           [[[[ref child:@"Files"] child:loggedinUid] child:imageCount] setValue:profileImageURL];
+                                         NSString *dbImageName = [NSString stringWithFormat:@"%@%@",@"2Marriage",imageCount];
+                                           [[[[ref child:@"Files"] child:loggedinUid] child:dbImageName] setValue:profileImageURL];
                                      } else {
                                          NSLog(@"not found");
                                      }

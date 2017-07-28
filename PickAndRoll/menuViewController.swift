@@ -12,38 +12,132 @@ import FirebaseStorage
 
 
 class menuViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
-
+    
     @IBOutlet weak var tblTableView: UITableView!
     @IBOutlet weak var imgProfile: UIImageView!
     
     var ManuNameArray:Array = [String]()
+    var userFolderDashboard = [String]()
+    var imaheKeysFromDB = [String]()
+    var userKeys = [String]()
     var iconArray:Array = [UIImage]()
     var loggedUserEmail = ""
     var myUserId = ""
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-     
-         myUserId = FIRAuth.auth()!.currentUser!.uid
+        
+        myUserId = FIRAuth.auth()!.currentUser!.uid
         loggedUserEmail = FIRAuth.auth()!.currentUser!.email!
         
-        print("useridddd---\(myUserId)")
+       
         
-        var ref = FIRDatabase.database().reference()
-        print("useridddd ref---\(ref)")
-        var productRef = ref.child("Users/\(myUserId)/profileImageUrl")
         
-        ref.observeSingleEvent(of: .value, with: { snapshot in
-            let dbvalue = snapshot.value as? String
+        //Get profileImage
+        let urlImage = NSURL(string: "https://pickandroll-e0897.firebaseio.com/Users/\(myUserId)/profileImageUrl.json")
+        
+        //fetching the data from the url
+        URLSession.shared.dataTask(with: (urlImage as? URL)!, completionHandler: {(data, response, error) -> Void in
             
-           print("dbvalue is --\(dbvalue)")
+            if let jsonObj = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? NSString {
+                print("jsonimage:\(jsonObj!)")
+                
+                OperationQueue.main.addOperation({
+                    //calling another function after fetching the json
+                    //it will show the names to label
+                    
+                })
+                
+                DispatchQueue.main.async(execute: {
+                    if let url = NSURL(string: jsonObj! as String) {
+                        if let imageData = NSData(contentsOf: url as URL) {
+                            let str64 = imageData.base64EncodedData(options: .lineLength64Characters)
+                            let data: NSData = NSData(base64Encoded: str64 , options: .ignoreUnknownCharacters)!
+                            let dataImage = UIImage(data: data as Data)
+                            
+                            self.imgProfile.image = dataImage
+                        }
+                    }
+                    
+                })
+                
+            }
+        }).resume()
+        
+        
+        //Read user folders
+        
+        var URL_IMAGES_DB = "https://pickandroll-e0897.firebaseio.com/Albums/\(FIRAuth.auth()!.currentUser!.uid).json"
+        
+        let url = NSURL(string: URL_IMAGES_DB)
+        
+        //fetching the data from the url
+        URLSession.shared.dataTask(with: (url as? URL)!, completionHandler: {(data, response, error) -> Void in
+            
+            if let jsonObj = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? NSArray {
+                print("jsonObj is -->\(jsonObj!)")
+                self.userFolderDashboard = (jsonObj as! NSArray as? [String])!
+                
+                OperationQueue.main.addOperation({
+                    
+                })
+                
+                DispatchQueue.main.async(execute: {
+                    
+                    
+                })
+                
+                
+            }
+        }).resume()
+        
+        
+        
+        //Get all user id's
+        //Read user folders
+        
+        var URL_USERS_DB = "https://pickandroll-e0897.firebaseio.com/Users.json"
+        
+        let url_URL_USERS_DB = NSURL(string: URL_USERS_DB)
+        
+        //fetching the data from the url
+        URLSession.shared.dataTask(with: (url_URL_USERS_DB as? URL)!, completionHandler: {(data, response, error) -> Void in
+            
+            if let jsonObjUsers = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? NSDictionary {
+                
+                
+                 self.userKeys = (jsonObjUsers?.allKeys)! as? NSArray as! [String]
+                               OperationQueue.main.addOperation({
+                    
+                })
+                
+                DispatchQueue.main.async(execute: {
+                    
+                    
+                })
+                
+                
+            }
+        }).resume()
+        
+        
+        //Get all keys from DB
+        let dbRef = FIRDatabase.database().reference().child("Files").child(myUserId)
+        dbRef.observe(.childAdded, with: { (snapshot) in
+            // Get download URL from snapshot
+            let downloadURL = snapshot.value as! String
+            let urlKey = snapshot.key as! String
+            
+            
+            self.imaheKeysFromDB.append(urlKey)
+            
+            
+            
         })
+
         
         
-        
-        ManuNameArray = ["Home","MyProfile","Map","Create Album"]
+        ManuNameArray = ["Dashboard","MyProfile","Map","Logout"]
         iconArray = [UIImage(named:"home")!,UIImage(named:"message")!,UIImage(named:"map")!,UIImage(named:"setting")!]
         
         imgProfile.layer.borderWidth = 2
@@ -59,7 +153,7 @@ class menuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         imgProfile.addGestureRecognizer(singleTap)
         // Do any additional setup after loading the view.
     }
-
+    
     
     func tapDetected() {
         print("Imageview Clicked")
@@ -68,7 +162,7 @@ class menuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         picker.allowsEditing = true
         
         present(picker, animated: true, completion: nil)
-
+        
     }
     
     
@@ -85,8 +179,6 @@ class menuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         if let selectedImage = selectedImageFromPicker {
             imgProfile.image = selectedImage
-            
-            
             
             //successfully authenticated user
             let imageName = NSUUID().uuidString
@@ -105,27 +197,24 @@ class menuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                         
                         
                         let values = ["Email":self.loggedUserEmail,"profileImageUrl":profileImageUrl]
-                       
+                        
                         self.changeProfilePicInDatabase(myUserId:self.myUserId,values:values as [String : AnyObject] )
                         
-                        
                     }
-                    
                     
                 })
             }
         }
         
-        
         dismiss(animated: true, completion: nil)
-    
+        
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         print("canceled picker")
         dismiss(animated: true, completion: nil)
     }
     
-     func changeProfilePicInDatabase(myUserId:String,values:[String:AnyObject]){
+    func changeProfilePicInDatabase(myUserId:String,values:[String:AnyObject]){
         
         let ref = FIRDatabase.database().reference(fromURL: "https://pickandroll-e0897.firebaseio.com/")
         // let userReference = ref.child("UserDetails").child("User1").child(uid)
@@ -143,7 +232,7 @@ class menuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         })
         
     }
-
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -161,19 +250,23 @@ class menuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let revealviewcontroller:SWRevealViewController = self.revealViewController()
         
         let cell:MenuCell = tableView.cellForRow(at: indexPath) as! MenuCell
         print(cell.lblMenuname.text!)
-        if cell.lblMenuname.text! == "Home"
+        if cell.lblMenuname.text! == "Dashboard"
         {
-            print("Home Tapped")
+            print("Dashboard Tapped")
             let mainstoryboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let newViewcontroller = mainstoryboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+            let newViewcontroller = mainstoryboard.instantiateViewController(withIdentifier: "ToDoListTableViewController") as! ToDoListTableViewController
+            newViewcontroller.userFolders = self.userFolderDashboard
+            newViewcontroller.userKeysFromDB = self.userKeys
+            newViewcontroller.imageKeys = self.imaheKeysFromDB
             let newFrontController = UINavigationController.init(rootViewController: newViewcontroller)
+            
             
             revealviewcontroller.pushFrontViewController(newFrontController, animated: true)
             
@@ -181,7 +274,7 @@ class menuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         if cell.lblMenuname.text! == "Email"
         {
             print("message Tapped")
-           
+            
             let mainstoryboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let newViewcontroller = mainstoryboard.instantiateViewController(withIdentifier: "MessageViewController") as! MessageViewController
             let newFrontController = UINavigationController.init(rootViewController: newViewcontroller)
@@ -198,16 +291,20 @@ class menuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             
             revealviewcontroller.pushFrontViewController(newFrontController, animated: true)
         }
-        if cell.lblMenuname.text! == "Create Album"
+        if cell.lblMenuname.text! == "Logout"
         {
-           print("Create Album Tapped")
-            let mainstoryboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let newViewcontroller = mainstoryboard.instantiateViewController(withIdentifier: "CreateAlbumViewController") as! CreateAlbumVC
-            let newFrontController = UINavigationController.init(rootViewController: newViewcontroller)
+            let firebaseAuth = FIRAuth.auth()
+            do {
+                try firebaseAuth?.signOut()
+            } catch let signOutError as NSError {
+                print ("Error signing out: %@", signOutError)
+            }
             
-            revealviewcontroller.pushFrontViewController(newFrontController, animated: true)
+            
+            DataService().keyChain.delete("uid")
+            dismiss(animated: true, completion: nil)
         }
     }
     
-
+    
 }

@@ -20,7 +20,7 @@ class PhotoFromAlbumsViewController: UIViewController,UICollectionViewDelegate,U
     
     var imagesArryFolder = [String]()
     var bigtitle: UIImage!
-    var URL_IMAGES = ""
+    var selectedFolderNameIndex = ""
     
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -31,32 +31,30 @@ class PhotoFromAlbumsViewController: UIViewController,UICollectionViewDelegate,U
         super.viewDidLoad()
         
         let myUserId = FIRAuth.auth()!.currentUser!.uid
-        print("myuserd id is-->\(myUserId)")
+        print("myuserd id is-->\(myUserId) and \(selectedFolderNameIndex)")
         
-        
-        print("FOLDER ARRAY -->\(imagesArryFolder.count) and \(URL_IMAGES)")
         
         self.imageArrayLength = self.imagesArryFolder.count
         
         print("imageArrayLength is --\(self.imageArrayLength)")
         
         
-//        if(self.imageArrayLength == 0){
-//            print("No photos")
-//        }
-//        else{
-//            
-//            for i in 0...self.imageArrayLength-1 {
-//                
-//                if let url = NSURL(string: self.imagesArryFolder[i] ) {
-//                    
-//                    if let imageData = NSData(contentsOf: url as URL) {
-//                        let str64 = imageData.base64EncodedData(options: .lineLength64Characters)
-//                        let data: NSData = NSData(base64Encoded: str64 , options: .ignoreUnknownCharacters)!
-//                        let dataImage = UIImage(data: data as Data)
-//                        self.bigtitle = dataImage
-//                        self.test.append(self.bigtitle)
-//                        
+        if(self.imageArrayLength == 0){
+            print("No photos")
+        }
+        else{
+            
+           for i in 0...self.imageArrayLength-1 {
+            
+               if let url = NSURL(string: self.imagesArryFolder[i] ) {
+                
+                    if let imageData = NSData(contentsOf: url as URL) {
+                        let str64 = imageData.base64EncodedData(options: .lineLength64Characters)
+                        let data: NSData = NSData(base64Encoded: str64 , options: .ignoreUnknownCharacters)!
+                       let dataImage = UIImage(data: data as Data)
+                        self.bigtitle = dataImage
+                        self.test.append(self.bigtitle)
+                        
 //                        do {
 //                            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
 //                            
@@ -65,12 +63,12 @@ class PhotoFromAlbumsViewController: UIViewController,UICollectionViewDelegate,U
 //                                try pngImageData.write(to: fileURL, options: .atomic)
 //                            }
 //                        } catch { }
-//                    }
-//                    
-//                }
-//                
-//            }
-//        }
+                    }
+                
+                }
+            
+            }
+        }
 //        
         
         
@@ -96,7 +94,7 @@ class PhotoFromAlbumsViewController: UIViewController,UICollectionViewDelegate,U
         //   cell.imgImage.image = imageName[indexPath.row]
         print(indexPath.row)
        
-        cell.lblName.isHidden = true
+     /*   cell.lblName.isHidden = true
         
                 for i in 0...self.imagesArryFolder.count-1 {
                     print("test")
@@ -112,10 +110,10 @@ class PhotoFromAlbumsViewController: UIViewController,UICollectionViewDelegate,U
         
                     }
                 }
-        
+        */
         
 
-       // cell.imgImage.image = self.test[indexPath.row]
+        cell.imgImage.image = self.test[indexPath.row]
         
         return cell
     }
@@ -155,4 +153,13 @@ class PhotoFromAlbumsViewController: UIViewController,UICollectionViewDelegate,U
         cell?.contentView.backgroundColor = UIColor.white
     }
     
+    @IBAction func uploadNewPhotoTapped(_ sender: Any) {
+        
+        
+        if let resultController = storyboard!.instantiateViewController(withIdentifier: "photos") as? ELCImagePickerController {
+            
+         //   resultController.selectedFolderName = selectedFolderNameIndex
+            present(resultController, animated: true, completion: nil)
+        }
+    }
 }

@@ -15,8 +15,7 @@
 @property (nonatomic, copy) NSArray *chosenImages;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-    
-  
+
 
 
 
@@ -28,6 +27,8 @@
 // a special picker controller that limits itself to a single album, and lets the user
 // pick just one image from that album.
 - (IBAction)launchSpecialController;
+
+@property (nonatomic, copy) NSString *selectedFolderName;
 
 @end
 

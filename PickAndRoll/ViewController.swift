@@ -22,7 +22,6 @@ class ViewController: UIViewController,CLLocationManagerDelegate,FBSDKLoginButto
     
     @IBOutlet weak var profileImage: UIImageView!
     
-    
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!

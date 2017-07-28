@@ -28,18 +28,18 @@ class UsersListViewController: UIViewController,UITableViewDataSource,UITableVie
     var userId = ""
     var imagesFromFolder = [String]()
     var selectedUserIndex = 0
-    
+    var sharedfolderName = ""
+    var albumcount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let myUserId = FIRAuth.auth()!.currentUser!.uid
         
-        
-        
         userId = myUserId
         print("folder index is--\(folderIndex)")
         print("myuserd id is-->\(myUserId)")
         print("imagesFromFolder----->>>\(imagesFromFolder.count)")
+        print(sharedfolderName)
         //creating a NSURL
         let url = NSURL(string: "https://pickandroll-e0897.firebaseio.com/Users.json")
         
@@ -65,7 +65,7 @@ class UsersListViewController: UIViewController,UITableViewDataSource,UITableVie
                     self.imagesArryFolder.append(profileImageUrl!)
                     self.names.append(self.username)
                     
-                   
+                    
                     
                 }
                 OperationQueue.main.addOperation({
@@ -112,17 +112,17 @@ class UsersListViewController: UIViewController,UITableViewDataSource,UITableVie
         cell.photo.image = imageName[indexPath.row]
         print("count in view : \(self.names.count)")
         cell.name.text = self.names[indexPath.row]
-        
         return cell
         
     }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // performSegue(withIdentifier: CHAT_SEGUE, sender: nil)
         print(self.imagesFromFolder.count)
         selectedUserIndex = indexPath.row
         insertImagesToDB()
         print("array uid is : \(arrayOfUid[indexPath.row])")
+        insertAlbum()
+        getCount()
         let myAlert = UIAlertController(title: "Share Album", message: "Album shared", preferredStyle:UIAlertControllerStyle.alert);
         
         let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil);
@@ -136,23 +136,56 @@ class UsersListViewController: UIViewController,UITableViewDataSource,UITableVie
         ref = FIRDatabase.database().reference()
         ref2 = ref.child("Files").child(arrayOfUid[selectedUserIndex])
         for i in 0...self.imagesFromFolder.count-1 {
-            
             var folderImages1 = userId.appending(String(folderIndex))
-            
             var folderImages =   String(folderIndex)!.appending(userId)
             print("folderimages are-->\(folderImages) and \(folderImages1)")
             let imageNumber = String(format:"%@%d", folderImages, i)
-            
             var imageName = imagesFromFolder[i]
             print("imagedetails is-->\(imageNumber) --- \(imageName)")
             
             ref2.child(imageNumber).setValue(imageName)
             
-            
         }
+        
+    }
+    
+    
+    
+    func getCount(){
+        //this function is fetching the json from URL
+        
+        //creating a NSURL
+        let url = NSURL(string: "https://pickandroll-e0897.firebaseio.com/Albums/\(arrayOfUid[selectedUserIndex]).json")
+        
+        //fetching the data from the url
+        URLSession.shared.dataTask(with: (url as? URL)!, completionHandler: {(data, response, error) -> Void in
+            
+            if let jsonObj = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? NSArray {
+                
+                             var responseArraySize = (jsonObj?.count)!
+                self.albumcount = responseArraySize
+                print("album size is\(responseArraySize)")
+                
+                DispatchQueue.main.async(execute: {
+                    
+                })
+                
+            }
+        }).resume()
+    }
+    
+    
+    func insertAlbum(){
+        var ref: FIRDatabaseReference!
+        var ref2: FIRDatabaseReference!
+        ref = FIRDatabase.database().reference()
+        ref2 = ref.child("Albums").child(arrayOfUid[selectedUserIndex])
+        ref2.child(String(self.albumcount+1)).setValue(sharedfolderName)
+        
         
         
     }
+    
     
     
 }
