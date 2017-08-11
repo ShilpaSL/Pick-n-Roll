@@ -17,8 +17,8 @@ class CustomFolderCell: UITableViewCell {
     
     @IBOutlet weak var imageCountTextField: UITextView!
     
-    @IBOutlet weak var sharedUsersCount: UITextView!
     
+    @IBOutlet weak var sharedUsersCount: UITextView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -13,7 +13,10 @@ class SideMenuViewController: UIViewController {
     @IBOutlet weak var btnMenuButton: UIBarButtonItem!
         override func viewDidLoad() {
         super.viewDidLoad()
-
+            
+            
+            
+         
             if revealViewController() != nil {
                 //            revealViewController().rearViewRevealWidth = 62
                 btnMenuButton.target = revealViewController()

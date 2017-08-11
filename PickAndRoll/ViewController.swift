@@ -22,6 +22,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate,FBSDKLoginButto
     
     @IBOutlet weak var profileImage: UIImageView!
     
+    
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -265,18 +266,13 @@ class ViewController: UIViewController,CLLocationManagerDelegate,FBSDKLoginButto
                     })
                 }
                 self.performSegue(withIdentifier: "SignIn", sender: nil)
-                //                self.ref?.child("Users").child(usernumber).child("Name").setValue("Vikas")
-                
                 
             }
         }
         
     }
     
-    
-    
-    
-    private func registerUserIntoDatabaseWithUID(uid:String,values:[String:AnyObject]){
+        private func registerUserIntoDatabaseWithUID(uid:String,values:[String:AnyObject]){
         
         let ref = FIRDatabase.database().reference(fromURL: "https://pickandroll-e0897.firebaseio.com/")
         // let userReference = ref.child("UserDetails").child("User1").child(uid)

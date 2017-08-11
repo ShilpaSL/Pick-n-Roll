@@ -57,6 +57,9 @@ class CreateAlbumVC: UIViewController,UINavigationBarDelegate,UINavigationContro
        dbFolderNames = defaults.stringArray(forKey: "SavedStringArray") ?? [String]()
         
         
+        
+
+        
     }
     
     
@@ -162,7 +165,8 @@ class CreateAlbumVC: UIViewController,UINavigationBarDelegate,UINavigationContro
         }
     }
     
-  
+    
+    
     
 }
 
@@ -214,7 +218,49 @@ extension CreateAlbumVC : UICollectionViewDelegate {
         
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier,for:indexPath) as! FruitCell
- 
+        
+//             // var newUser: User!
+//        var newUser = ""
+//        let alertController = UIAlertController(title: "Rename folder", message: "Please tell me your name:", preferredStyle: .alert)
+//        
+//        alertController.addAction(UIAlertAction(title: "Save", style: .default, handler: {
+//            alert -> Void in
+//            let fNameField = alertController.textFields![0] as UITextField
+//            // let lNameField = alertController.textFields![1] as UITextField
+//            
+//            if fNameField.text != "" {
+//                //    self.newUser = user fNameField.text!, ln: lNameField.text!)
+//                //TODO: Save user data in persistent storage - a tutorial for another time
+//                
+//                self.folderNames.append(fNameField.text!)
+//                print(fNameField.text!)
+////                let defaults = UserDefaults.standard
+////                defaults.set(self.folderNames, forKey: "SavedStringArray")
+//              
+//                
+//                
+//            } else {
+//                let errorAlert = UIAlertController(title: "Error", message: "Please input  name", preferredStyle: .alert)
+//                errorAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: {
+//                    alert -> Void in
+//                    self.present(alertController, animated: true, completion: nil)
+//                }))
+//                self.present(errorAlert, animated: true, completion: nil)
+//            }
+//        }))
+//        
+//        alertController.addTextField(configurationHandler: { (textField) -> Void in
+//            textField.placeholder = "First Name"
+//            textField.textAlignment = .center
+//        })
+//        
+//        
+//        self.present(alertController, animated: true, completion: nil)
+        
+        
+        
+        
+        
         
                 let refreshAlert = UIAlertController(title: "Alert", message: "Want to share folder?", preferredStyle: UIAlertControllerStyle.alert)
         
@@ -246,7 +292,7 @@ extension CreateAlbumVC : UICollectionViewDelegate {
         
                     let nextViewController = storyBoard.instantiateViewController(withIdentifier: "showAlbum") as! PhotoFromAlbumsViewController
                     nextViewController.imagesArryFolder = self.imagesFromDB
-                    
+                  //  nextViewController.URL_IMAGES = URL_IMAGES_DB
                     print("alert count is-->\(self.imagesFromDB.count)")
         
         
