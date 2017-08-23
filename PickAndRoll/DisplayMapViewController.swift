@@ -20,11 +20,16 @@ class DisplayMapViewController: UIViewController,CLLocationManagerDelegate {
     var lattitude = 0.0
     var longitude = 0.0
     var responseArraySize = 0
-    let URL_HEROES = "https://pickandroll-e0897.firebaseio.com/Users.json";
+    let URL_HEROES = "https://pick-n-roll.firebaseio.com/Users.json";
+    @IBOutlet weak var menu: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        revealViewController().rearViewRevealWidth = 200
+        menu.target = revealViewController()
+        menu.action = #selector(SWRevealViewController.revealToggle(_:))
         // Do any additional setup after loading the view.
         // Create a GMSCameraPosition that tells the map to display the
         // coordinate -33.86,151.20 at zoom level 13.

@@ -1,9 +1,9 @@
 //
 //  CollectionViewCell.swift
-//  PickAndRoll
+//  collection view
 //
-//  Created by Shilpa-CISPL on 05/07/17.
-//  Copyright © 2017 CISPL. All rights reserved.
+//  Created by Parth Changela on 01/01/17.
+//  Copyright © 2017 Parth Changela. All rights reserved.
 //
 
 import UIKit
@@ -12,10 +12,4 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imgImage: UIImageView!
     
     @IBOutlet weak var lblName: UILabel!
-    
-    
-    
-    
-    
-    
 }

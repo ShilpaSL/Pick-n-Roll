@@ -15,6 +15,7 @@
 #import <MobileCoreServices/UTCoreTypes.h>
 #import "ELCConsole.h"
 
+
 @implementation ELCImagePickerController
 
 //Using auto synthesizers

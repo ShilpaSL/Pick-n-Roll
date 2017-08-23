@@ -14,10 +14,10 @@
 
 
 import UIKit
-
 import FirebaseDatabase
-
 import FirebaseAuth
+import FirebaseStorageCache
+import FirebaseStorage
 
 
 class UsersListViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
@@ -27,37 +27,26 @@ class UsersListViewController: UIViewController,UITableViewDataSource,UITableVie
     private let CHAT_SEGUE = "ChatSegue"
     
     var names = [String]()
-    
     var imagesArryFolder = [String]()
-    
     var folderIndex = ""
-    
     var profileImages = [UIImage]()
-    
     var arrayOfUid = [String]()
-    
     var username = ""
-    
     var imageName = [UIImage(named: "home"),UIImage(named: "profile"),UIImage(named: "map")]
-    
     var responseArraySize = 0
-    
     var userId = ""
-    
-    var imagesFromFolder = [String]()
-    
+var imagesFromFolder = [String]()
     var selectedUserIndex = 0
-    
     var sharedfolderName = ""
-    
     var albumcount = 0
-    
-    
     var sharedUID = [String]()
-    
     var sharedUserCount = 0
     var gallerySharedUsers = [String]()
     var folderSharedUID = [String]()
+    
+    @IBOutlet weak var backBarButton: UIBarButtonItem!
+    
+    var imageCache:NSCache<AnyObject, AnyObject>!
     
     override func viewDidLoad() {
         
@@ -67,17 +56,13 @@ class UsersListViewController: UIViewController,UITableViewDataSource,UITableVie
         
         let email = FIRAuth.auth()!.currentUser!.email
         
-        //  tableView.backgroundView = UIImageView(image: UIImage(named: "signin-bg"))
+        tableView.backgroundView = UIImageView(image: UIImage(named: "signin-bg"))
         
         userId = myUserId
         
-        print("gallerySharedUsers is--\(gallerySharedUsers)")
-        
-        print(sharedfolderName)
-        
         //creating a NSURL
         
-        let url = NSURL(string: "https://pickandroll-e0897.firebaseio.com/Users.json")
+        let url = NSURL(string: "https://pick-n-roll.firebaseio.com/Users.json")
         
         
         //fetching the data from the url
@@ -124,36 +109,31 @@ class UsersListViewController: UIViewController,UITableViewDataSource,UITableVie
                     
                 })
                 
-                
-                
                 DispatchQueue.main.async(execute: {
                     
-                    for i in 0...self.imagesArryFolder.count-1 {
-                        
-                        
-                        if let url = NSURL(string: self.imagesArryFolder[i] ) {
-                            
-                            if let imageData = NSData(contentsOf: url as URL) {
-                                
-                                let str64 = imageData.base64EncodedData(options: .lineLength64Characters)
-                                
-                                let data: NSData = NSData(base64Encoded: str64 , options: .ignoreUnknownCharacters)!
-                                
-                                let dataImage = UIImage(data: data as Data)
-                                
-                                //self.profileImages.append(dataImage!)
-                                
-                                self.imageName.append(dataImage)
-                                
-                            }
-                            
-                        }
-                        
-                    }
+//                    for i in 0...self.imagesArryFolder.count-1 {
+//                        
+//                        
+//                        if let url = NSURL(string: self.imagesArryFolder[i] ) {
+//                            
+//                            if let imageData = NSData(contentsOf: url as URL) {
+//                                
+//                                let str64 = imageData.base64EncodedData(options: .lineLength64Characters)
+//                                
+//                                let data: NSData = NSData(base64Encoded: str64 , options: .ignoreUnknownCharacters)!
+//                                
+//                                let dataImage = UIImage(data: data as Data)
+//                                
+//                                self.imageName.append(dataImage)
+//                                
+//                            }
+//                            
+//                        }
+//                        
+//                    } //for ends
                     
                     self.tableView.reloadData()
                     
-                    print("array of id's-->\(self.arrayOfUid)")
                     
                 })
                 
@@ -174,10 +154,9 @@ class UsersListViewController: UIViewController,UITableViewDataSource,UITableVie
             }
                 
             else {
-                print("NO ALBUMS")
+                print("NO Shared Users")
             }
         })
-        
         
     }
     
@@ -189,6 +168,8 @@ class UsersListViewController: UIViewController,UITableViewDataSource,UITableVie
         
     }
     
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return self.names.count
@@ -199,8 +180,23 @@ class UsersListViewController: UIViewController,UITableViewDataSource,UITableVie
         
         var cell = self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCell
         
-        cell.photo.image = imageName[indexPath.row]
+       // cell.photo.image = imageName[indexPath.row]
         cell.name.text = self.names[indexPath.row]
+        print("index is-->\(indexPath.row)")
+        
+        let imageUrl:NSURL = NSURL(string: self.imagesArryFolder[indexPath.row + 1])!
+        let imageData:NSData = NSData(contentsOf: imageUrl as URL)!
+        let imageView = UIImageView(frame: CGRect(x:10, y:10, width:cell.frame.size.width, height:cell.frame.size.height))
+        
+        
+        DispatchQueue.main.async {
+            
+            let image = UIImage(data: imageData as Data)
+            cell.photo.image = image
+            //  imageView.contentMode = UIViewContentMode.scaleAspectFit
+            
+            cell.addSubview(imageView)
+        }
         
         return cell
         
@@ -221,7 +217,6 @@ class UsersListViewController: UIViewController,UITableViewDataSource,UITableVie
         }
         else {
             insertImagesToDB()
-            print("array uid is : \(arrayOfUid[indexPath.row])")
             
             getCount()
             
@@ -262,7 +257,6 @@ class UsersListViewController: UIViewController,UITableViewDataSource,UITableVie
             var imageName = imagesFromFolder[i]
             
             ref2.child(imageNumber).setValue(imageName)
-            print("child values-->\(imageNumber) and \(imageName)")
             
         }
         
@@ -272,7 +266,7 @@ class UsersListViewController: UIViewController,UITableViewDataSource,UITableVie
         
         //creating a NSURL
         
-        let url = NSURL(string: "https://pickandroll-e0897.firebaseio.com/Albums/\(arrayOfUid[selectedUserIndex]).json")
+        let url = NSURL(string: "https://pick-n-roll.firebaseio.com/Albums/\(arrayOfUid[selectedUserIndex]).json")
         
         //fetching the data from the url
         

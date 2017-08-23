@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ELCImagePickerHeader.h"
+//#import "PhotoFromAlbumsViewController.h"
+
+
 
 
 @interface ELCImagePickerDemoViewController : UIViewController <ELCImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate>
@@ -17,7 +20,6 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
     
   
-
 
 
 

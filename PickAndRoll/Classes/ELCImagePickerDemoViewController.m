@@ -134,10 +134,8 @@ NSString   *myString;
     
     //Shared Users
     NSMutableArray* myMutableArrayAgain = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"nameArray"]];
-    NSString *foldername = @"Family";
-    
-    
-    //  NSString *folderName = [[NSUserDefaults standardUserDefaults] objectForKey:@"nameArray"];
+    NSString * foldername = [[NSUserDefaults standardUserDefaults] objectForKey: @"FolderName"];
+      //  NSString *folderName = [[NSUserDefaults standardUserDefaults] objectForKey:@"nameArray"];
     NSLog(@"Current nameArray path: %@%@", myMutableArrayAgain,foldername);
     
     
@@ -250,14 +248,8 @@ NSString   *myString;
                                  
                                  NSString *imageCount = [NSString stringWithFormat:@"%@%d",loggedinUid,totalIndex];
                                  NSString *dbImageName = [NSString stringWithFormat:@"%@%@",foldername,imageCount];
-                                 //   [[[[ref child:@"Files"] child:loggedinUid] child:dbImageName] setValue:profileImageURL];
-                                 
-                                 
-                                 
+                                                                 
                                  [[[[ref child:@"Files"] child:loggedinUid] child:dbImageName] setValue:profileImageURL];
-                                 
-                                 
-                                 
                                  
                                  NSInteger i;
                                  

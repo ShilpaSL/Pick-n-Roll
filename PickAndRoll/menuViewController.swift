@@ -32,8 +32,6 @@ class menuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     @IBOutlet weak var imgProfile: UIImageView!
     
-    
-    
     var ManuNameArray:Array = [String]()
     
     var userFolderDashboard = [String]()
@@ -47,7 +45,6 @@ class menuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var loggedUserEmail = ""
     
     var myUserId = ""
-    var sharedAlbumUsers = [String]()
     
     
     
@@ -55,65 +52,21 @@ class menuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         super.viewDidLoad()
         
-       
         myUserId = FIRAuth.auth()!.currentUser!.uid
         
         loggedUserEmail = FIRAuth.auth()!.currentUser!.email!
         
+        //Get profileImage
         
-        //Read album shared count
-        
-        FIRDatabase.database().reference().child("SharedUsers/\(FIRAuth.auth()!.currentUser!.uid)").observeSingleEvent(of: .value, with: {(snap) in
-            
-            if(snap.exists()){
-                var countDict = snap.value as! NSDictionary
-                var dict_keys = Array(countDict.allKeys)
-                var dict_values = Array(countDict.allValues)
-                for i in 0...dict_keys.count - 1 {
-                    var dictValues = dict_values[i] as! NSDictionary
-                    
-                    var gallery_count = "\(dict_keys[i]) : \(dictValues.count)"
-                    
-                    self.sharedAlbumUsers.append(String(dictValues.count))
-                    print("arrOfAlbumSharedUsers is -->\(self.sharedAlbumUsers)")
-                    
-                }
-            }
-            else {
-                print("NO SharedUserUID")
-            }
-            
-        })
-
-              //Get profileImage
-        
-        let urlImage = NSURL(string: "https://pickandroll-e0897.firebaseio.com/Users/\(myUserId)/profileImageUrl.json")
-        
-        
-        
+               let urlImage = NSURL(string: "https://pick-n-roll.firebaseio.com/Users/\(myUserId)/profileImageUrl.json")
         //fetching the data from the url
         
         URLSession.shared.dataTask(with: (urlImage as? URL)!, completionHandler: {(data, response, error) -> Void in
             
-            
-            
             if let jsonObj = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? NSString {
-                
-              //  print("jsonimage:\(jsonObj!)")
-                
-                
-                
                 OperationQueue.main.addOperation({
                     
-                    //calling another function after fetching the json
-                    
-                    //it will show the names to label
-                    
-                    
-                    
                 })
-                
-                
                 
                 DispatchQueue.main.async(execute: {
                     
@@ -127,60 +80,44 @@ class menuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                             
                             let dataImage = UIImage(data: data as Data)
                             
-                            
-                            
                             self.imgProfile.image = dataImage
                             
                         }
                         
                     }
                     
-                    
-                    
                 })
-                
-                
                 
             }
             
         }).resume()
         
-               //Read user folders
+        //Read user folders
         
-        
-        var URL_IMAGES_DB = "https://pickandroll-e0897.firebaseio.com/Albums/\(FIRAuth.auth()!.currentUser!.uid).json"
-        
+        var URL_IMAGES_DB = "https://pick-n-roll.firebaseio.com/Albums/\(FIRAuth.auth()!.currentUser!.uid).json"
         
         let url = NSURL(string: URL_IMAGES_DB)
-        
         
         //fetching the data from the url
         
         URLSession.shared.dataTask(with: (url as? URL)!, completionHandler: {(data, response, error) -> Void in
             
-            
-            
             if let jsonObj = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? NSArray {
                 
-              //  print("jsonObj is -->\(jsonObj!)")
+                //  print("jsonObj is -->\(jsonObj!)")
                 
                 if(jsonObj == nil){
                     print("Nofolder")
                 }
                 else {
-                self.userFolderDashboard = (jsonObj as! NSArray as? [String])!
-                
+                    self.userFolderDashboard = (jsonObj as! NSArray as? [String])!
+                    
                 }
                 
                 OperationQueue.main.addOperation({
                     
-                    
-                    
                 })
-                
-                                DispatchQueue.main.async(execute: {
-                    
-                    
+                DispatchQueue.main.async(execute: {
                     
                 })
                 
@@ -189,38 +126,36 @@ class menuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             
         }).resume()
         
-              //Get all user id's
+        
+        //Get all user id's
         
         //Read user folders
+        var URL_USERS_DB = "https://pick-n-roll.firebaseio.com/Users.json"
         
-                var URL_USERS_DB = "https://pickandroll-e0897.firebaseio.com/Users.json"
-        
-                let url_URL_USERS_DB = NSURL(string: URL_USERS_DB)
+        let url_URL_USERS_DB = NSURL(string: URL_USERS_DB)
         
         //fetching the data from the url
         
         URLSession.shared.dataTask(with: (url_URL_USERS_DB as? URL)!, completionHandler: {(data, response, error) -> Void in
-          
             if let jsonObjUsers = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? NSDictionary {
-      
+                
                 self.userKeys = (jsonObjUsers?.allKeys)! as? NSArray as! [String]
                 
                 OperationQueue.main.addOperation({
-             
+                    
                 })
                 
                 DispatchQueue.main.async(execute: {
-    
+                    
                 })
                 
-            
             }
             
         }).resume()
-    
+        
         //Get all keys from DB
         
-        let dbRef = FIRDatabase.database().reference().child("Files").child(myUserId)
+        let dbRef = FIRDatabase.database().reference().child("Files").child(myUserId).child("Testing")
         
         dbRef.observe(.childAdded, with: { (snapshot) in
             
@@ -232,31 +167,19 @@ class menuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             
             self.imaheKeysFromDB.append(urlKey)
             
-            
-            
         })
         
-     
         
         ManuNameArray = ["Dashboard","MyProfile","Map","Logout"]
-        
         iconArray = [UIImage(named:"home")!,UIImage(named:"message")!,UIImage(named:"map")!,UIImage(named:"setting")!]
         
         
-        
+        //Rounded image
         imgProfile.layer.borderWidth = 2
-        
         imgProfile.layer.borderColor = UIColor.green.cgColor
-        
         imgProfile.layer.cornerRadius = 50
-        
-        
-        
         imgProfile.layer.masksToBounds = false
-        
         imgProfile.clipsToBounds = true
-        
-        
         
         let singleTap = UITapGestureRecognizer(target: self, action: Selector("tapDetected"))
         
@@ -265,44 +188,21 @@ class menuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         imgProfile.isUserInteractionEnabled = true
         
         imgProfile.addGestureRecognizer(singleTap)
-        
-        // Do any additional setup after loading the view.
-        
     }
-    
-    
-    
     
     
     func tapDetected() {
-        
-        print("Imageview Clicked")
-        
         let picker = UIImagePickerController()
-        
         picker.delegate = self
-        
         picker.allowsEditing = true
-        
-        
-        
         present(picker, animated: true, completion: nil)
         
-        
-        
     }
-    
-    
-    
     
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        
-        
         var selectedImageFromPicker: UIImage?
-        
-        
         
         if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
             
@@ -310,19 +210,14 @@ class menuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             
         } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
             
-            
-            
             selectedImageFromPicker = originalImage
             
         }
         
         
-        
         if let selectedImage = selectedImageFromPicker {
             
             imgProfile.image = selectedImage
-            
-            
             
             //successfully authenticated user
             
@@ -331,8 +226,6 @@ class menuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             let storageRef = FIRStorage.storage().reference().child("pickroll_profile_images").child("\(imageName).png")
             
             if let uploadData = UIImagePNGRepresentation(imgProfile.image!) {
-                
-                
                 
                 storageRef.put(uploadData, metadata: nil, completion: {(metadata,error) in
                     
@@ -345,20 +238,13 @@ class menuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     }
                     
                     
-                    
                     if let profileImageUrl = metadata?.downloadURL()?.absoluteString{
-               
+                        
                         let values = ["Email":self.loggedUserEmail,"profileImageUrl":profileImageUrl]
-                        
-                        
                         
                         self.changeProfilePicInDatabase(myUserId:self.myUserId,values:values as [String : AnyObject] )
                         
-                        
-                        
                     }
-                    
-                    
                     
                 })
                 
@@ -366,11 +252,7 @@ class menuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             
         }
         
-        
-        
         dismiss(animated: true, completion: nil)
-        
-        
         
     }
     
@@ -382,25 +264,13 @@ class menuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
     }
     
-    
-    
     func changeProfilePicInDatabase(myUserId:String,values:[String:AnyObject]){
         
-        
-        
-        let ref = FIRDatabase.database().reference(fromURL: "https://pickandroll-e0897.firebaseio.com/")
-        
-        // let userReference = ref.child("UserDetails").child("User1").child(uid)
-        
+        let ref = FIRDatabase.database().reference(fromURL: "https://pick-n-roll.firebaseio.com/")
         let userReference = ref.child("Users").child(myUserId)
         
         
-        
-        
-        
         userReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
-            
-            
             
             if let err = err {
                 
@@ -410,18 +280,11 @@ class menuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 
             }
             
-            
-            
             self.dismiss(animated: true, completion: nil)
             
         })
         
-        
-        
     }
-    
-    
-    
     
     
     override func didReceiveMemoryWarning() {
@@ -444,39 +307,24 @@ class menuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell", for: indexPath) as! MenuCell
         
-        
-        
         cell.lblMenuname.text! = ManuNameArray[indexPath.row]
         
         cell.imgIcon.image = iconArray[indexPath.row]
-        
         
         
         return cell
         
     }
     
-    
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        
         
         let revealviewcontroller:SWRevealViewController = self.revealViewController()
         
-        
-        
         let cell:MenuCell = tableView.cellForRow(at: indexPath) as! MenuCell
-        
-        print(cell.lblMenuname.text!)
-        
-        if cell.lblMenuname.text! == "Dashboard"
+              if cell.lblMenuname.text! == "Dashboard"
             
         {
-            
-            print("Dashboard Tapped")
-            
-            let mainstoryboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                      let mainstoryboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             
             let newViewcontroller = mainstoryboard.instantiateViewController(withIdentifier: "ToDoListTableViewController") as! ToDoListTableViewController
             
@@ -486,11 +334,9 @@ class menuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             
             newViewcontroller.imageKeys = self.imaheKeysFromDB
             
-           newViewcontroller.arrOfAlbumSharedUsers = sharedAlbumUsers
-            
             let newFrontController = UINavigationController.init(rootViewController: newViewcontroller)
+          
             revealviewcontroller.pushFrontViewController(newFrontController, animated: true)
-            
             
             
         }
@@ -498,19 +344,11 @@ class menuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         if cell.lblMenuname.text! == "MyProfile"
             
         {
-            
-            print("MyProfile Tapped")
-            
-            
-            
             let mainstoryboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             
             let newViewcontroller = mainstoryboard.instantiateViewController(withIdentifier: "MessageViewController") as! MessageViewController
             
             let newFrontController = UINavigationController.init(rootViewController: newViewcontroller)
-            
-            
-            
             revealviewcontroller.pushFrontViewController(newFrontController, animated: true)
             
         }
@@ -519,17 +357,11 @@ class menuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             
         {
             
-            print("Map Tapped")
-            
-            
-            
             let mainstoryboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             
             let newViewcontroller = mainstoryboard.instantiateViewController(withIdentifier: "MapVC") as! DisplayMapViewController
             
             let newFrontController = UINavigationController.init(rootViewController: newViewcontroller)
-            
-            
             
             revealviewcontroller.pushFrontViewController(newFrontController, animated: true)
             
@@ -538,7 +370,6 @@ class menuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         if cell.lblMenuname.text! == "Logout"
             
         {
-            
             let firebaseAuth = FIRAuth.auth()
             
             do {
@@ -550,22 +381,13 @@ class menuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 print ("Error signing out: %@", signOutError)
                 
             }
-            
-            
-            
-            
-            
-            DataService().keyChain.delete("uid")
+                        DataService().keyChain.delete("uid")
             
             dismiss(animated: true, completion: nil)
             
         }
         
     }
-    
-    
-    
-    
-    
+
 }
 

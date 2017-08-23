@@ -26,7 +26,7 @@ pod 'GoogleSignIn'
 pod 'FBSDKCoreKit'
 pod 'FBSDKShareKit'
 pod 'FBSDKLoginKit'
-
+pod 'FirebaseStorageCache'
 
   target 'PickAndRollUITests' do
     inherit! :search_paths

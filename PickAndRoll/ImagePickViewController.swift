@@ -55,10 +55,7 @@ class ImagePickViewController: UIViewController {
                         let values = ["Name":name,"Email":email,"profileImageUrl":profileImageUrl]
                         self.registerUserIntoDatabaseWithUID(uid: uid, values: values as [String : AnyObject])
                     }
-                    
-                    
-                    
-                })
+                              })
             }
             
         })

@@ -26,6 +26,12 @@ class CustomCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+        
+      //  photo.layer.borderWidth = 0.01
+        photo.layer.masksToBounds = false
+        photo.layer.borderColor = UIColor.black.cgColor
+        photo.layer.cornerRadius = 50
+        photo.clipsToBounds = true
     }
 
 }

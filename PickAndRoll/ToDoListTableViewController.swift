@@ -11,7 +11,7 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
-class ToDoListTableViewController: UITableViewController {
+class ToDoListTableViewController: UITableViewController,UINavigationBarDelegate,UINavigationControllerDelegate {
     
     var items: [Array<String>] = [[String]()]
     var folderName = ""
@@ -26,9 +26,9 @@ class ToDoListTableViewController: UITableViewController {
     var sharedUsersArray = [String]()
     var folderSharedUID = [String]()
     var arrOfAlbumSharedUsers = [String]()
-    
-    
-    @IBAction func cancelToToDoList(_ segue: UIStoryboardSegue) {
+   
+    @IBOutlet weak var menu: UIBarButtonItem!
+     @IBAction func cancelToToDoList(_ segue: UIStoryboardSegue) {
         
     }
     
@@ -38,7 +38,7 @@ class ToDoListTableViewController: UITableViewController {
         
         if let newItem = newToDoViewController.toDoItem {
             items[0].append(newItem)
-           // self.arrOfAlbumSharedUsers.append("0")
+            self.arrOfAlbumSharedUsers.append("0")
             tableView.reloadData()
             
         }
@@ -48,9 +48,7 @@ class ToDoListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("imagekeysss -->\(imageKeys)")
-        
-        //   tableView.backgroundView = UIImageView(image: UIImage(named: "signin-bg"))
+           tableView.backgroundView = UIImageView(image: UIImage(named: "signin-bg"))
         
         userId = FIRAuth.auth()!.currentUser!.uid
                sharedUsers = String(self.sharedUsersArray.count)
@@ -61,15 +59,15 @@ class ToDoListTableViewController: UITableViewController {
             // Get download URL from snapshot
             let downloadURL = snapshot.value as! String
             let urlKey = snapshot.key as! String
-           // self.imageKeys.append(urlKey)
-           
+            self.imageKeys.append(urlKey)
+            print("IMAGEKEYS are-->\(self.imageKeys)")
             self.imagesFromDB.append(downloadURL);
             
             
         })
         
         
-        var URL_IMAGES_DB = "https://pickandroll-e0897.firebaseio.com/Albums/\(FIRAuth.auth()!.currentUser!.uid).json"
+        var URL_IMAGES_DB = "https://pick-n-roll.firebaseio.com/Albums/\(FIRAuth.auth()!.currentUser!.uid).json"
         let url = NSURL(string: URL_IMAGES_DB)
         
         //fetching the data from the url
@@ -109,7 +107,32 @@ class ToDoListTableViewController: UITableViewController {
         }).resume()
         
         
-      
+        
+        //Read album shared count
+        
+        FIRDatabase.database().reference().child("SharedUsers/\(FIRAuth.auth()!.currentUser!.uid)").observeSingleEvent(of: .value, with: {(snap) in
+            
+            if(snap.exists()){
+                var countDict = snap.value as! NSDictionary
+                var dict_keys = Array(countDict.allKeys)
+                var dict_values = Array(countDict.allValues)
+                for i in 0...dict_keys.count - 1 {
+                    var dictValues = dict_values[i] as! NSDictionary
+                    
+                    var gallery_count = "\(dict_keys[i]) : \(dictValues.count)"
+                   
+                    self.arrOfAlbumSharedUsers.append(String(dictValues.count))
+                    print("arrOfAlbumSharedUsers is -->\(self.arrOfAlbumSharedUsers)")
+                    
+                }
+            }
+            else {
+                print("NO SharedUserUID")
+            }
+            
+        })
+        
+   
     }
     
     override func didReceiveMemoryWarning() {
@@ -132,18 +155,19 @@ class ToDoListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! CustomFolderCell
-       
+        
+        
+        //   var cell = self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCell
         // Configure the cell...
         cell.folderNameTextView.text = items[indexPath.section][indexPath.row]
-        print(indexPath.section)
-       // cell.folderImageView?.image = UIImage(named:"folder")
-               let sections: Int = tableView.numberOfSections
+               cell.imageCountTextField.isHidden = true
+              let sections: Int = tableView.numberOfSections
         var rows: Int = 0
         
         for i in 0..<sections {
             rows += tableView.numberOfRows(inSection: i)
         }
-        print("rows are-->\(rows) and \(self.arrOfAlbumSharedUsers.count)")
+        print("rows are-->\(rows)")
         
         if(rows == self.arrOfAlbumSharedUsers.count){
             cell.sharedUsersCount.text = self.arrOfAlbumSharedUsers[indexPath.row]
@@ -155,82 +179,9 @@ class ToDoListTableViewController: UITableViewController {
             
             
         }
-        
-        
-        
-        folderName = items[indexPath.section][indexPath.row]
+                folderName = items[indexPath.section][indexPath.row]
         folderIndex = indexPath.row
-        
-        
-        /*    var dict = [String : AnyObject]()
-         var newdict = [String : AnyObject]()
-         
-         for m in 0...self.imageKeys.count-1 {
-         
-         if((self.imageKeys[m].contains(folderName)) && (folderIndex == m)) {
-         var folderImageArray = [String]()
-         folderImageArray.append(self.imageKeys[m])
-         
-         // Initialize the Dictionary
-         dict = [folderName: self.imageKeys[m] as NSString]
-         cell.imageCountTextField.text = String(folderImageArray.count)
-         
-         print(dict[folderName]!)
-         
-         }
-         }
-         */
-        
-        /* Image count for each folder
-         var resultArray = [String]()
-         var noImageArray = [String]()
-         for m in 0...self.imageKeys.count - 1 {
-         print(m)
-         
-         for n in 0...self.userFolders.count - 1 {
-         print(n)
-         if(self.imageKeys[m].contains(userFolders[n])) {
-         
-         var res = "\(userFolders[n])"
-         resultArray.append(res)
-         }
-         else {
-         
-         }
-         
-         }
-         
-         }
-         print("resultarray==\(resultArray)")
-         
-         
-         var counts:[String:Int] = [:]
-         for item in resultArray {
-         counts[item] = (counts[item] ?? 0) + 1
-         print("item is-->\(item)")
-         
-         }
-         
-         print("numCount==\(counts)")
-         
-         var folderImageCount = [Int]()
-         var folderArray = [String]()
-         
-         folderImageCount = Array(counts.values)
-         folderArray =  Array(counts.keys)
-         print("folderImageCount-->\(folderImageCount)")
-         
-         for k in 0...folderArray.count - 1 {
-         if(userFolders.contains(folderArray[k])) {
-         
-         cell.imageCountTextField.text = String(folderImageCount[k])
-         }
-         }
-         */
-        
-        
-        
-        var shareArr = [String]()
+               var shareArr = [String]()
         for i in self.imageKeys {
             
             if (i.range(of: userId) == nil) {
@@ -238,7 +189,7 @@ class ToDoListTableViewController: UITableViewController {
                 
             }
             else {
-                // print("i value\(i)")
+                
             }
             
             
@@ -307,10 +258,9 @@ class ToDoListTableViewController: UITableViewController {
                             for i in 0...dict_values.count - 1 {
                                 self.folderSharedUID.append(dict_values[i] as! String)
                             }
-                            print("folderSharedUID are-->\(self.folderSharedUID)")
-               
+                           
                         }
-          
+                        
                         else {
                             print("NO ALBUMS")
                         }
@@ -325,7 +275,7 @@ class ToDoListTableViewController: UITableViewController {
                     nextViewController.gallerySharedUsers = self.folderSharedUID
                     self.present(nextViewController, animated:true, completion:nil)
                 }
-            
+           
             }))
             
             refreshAlert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
@@ -356,9 +306,7 @@ class ToDoListTableViewController: UITableViewController {
                         for i in 0...dict_values.count - 1 {
                             self.folderSharedUID.append(dict_values[i] as! String)
                         }
-                        print("folderSharedUID are-->\(self.folderSharedUID)")
-                        
-                        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                                               let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "showAlbum") as! PhotoFromAlbumsViewController
                         nextViewController.imagesArryFolder = folderImages
                         nextViewController.selectedFolderNameIndex = resultStr
@@ -372,10 +320,7 @@ class ToDoListTableViewController: UITableViewController {
                         print("NO ALBUMS")
                     }
                 })
-                
-                
-                
-                
+           
                 
             }))
             
@@ -383,104 +328,7 @@ class ToDoListTableViewController: UITableViewController {
             
         }
         
-        
-        
-        
-        
-        
-        //MAIN CODE TO CHECK
-        /*   if(self.imageKeys.count == 0){
-         
-         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "showAlbum") as! PhotoFromAlbumsViewController
-         nextViewController.imagesArryFolder = folderImages
-         nextViewController.selectedFolderNameIndex = resultStr
-         
-         nextViewController.folderSharedUIDFromTodoList = self.folderSharedUID
-         self.present(nextViewController, animated:true, completion:nil)
-         
-         }
-         
-         
-         else {
-         for k in 0...self.imageKeys.count-1 {
-         if(self.imageKeys[k].contains(currentCell.folderNameTextView!.text!)){
-         folderImages.append(self.imagesFromDB[k])
-         print("folderimages count\(folderImages)")
-         
-         }
-         //                            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-         //                            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "showAlbum") as! PhotoFromAlbumsViewController
-         //                            nextViewController.imagesArryFolder = folderImages
-         //                            nextViewController.selectedFolderNameIndex = resultStr
-         //
-         //                            nextViewController.folderSharedUIDFromTodoList = self.folderSharedUID
-         //                            self.present(nextViewController, animated:true, completion:nil)
-         
-         
-         //Open Userlist view controller to share folder
-         
-         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "showUsers") as! UsersListViewController
-         
-         nextViewController.imagesFromFolder = folderImages
-         print(folderImages.count)
-         nextViewController.folderIndex = columnindex
-         nextViewController.sharedfolderName = folderText
-         self.present(nextViewController, animated:true, completion:nil)
-         
-         
-         }
-         
-         FIRDatabase.database().reference().child("SharedUsers/\(FIRAuth.auth()!.currentUser!.uid)/\(folderText)").observeSingleEvent(of: .value, with: {(snap) in
-         var countDict = snap.value as! NSDictionary
-         var dict_values = Array(countDict.allValues)
-         
-         for i in 0...dict_values.count - 1 {
-         self.folderSharedUID.append(dict_values[i] as! String)
-         }
-         print("folderSharedUID are-->\(self.folderSharedUID)")
-         
-         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "showAlbum") as! PhotoFromAlbumsViewController
-         nextViewController.imagesArryFolder = folderImages
-         nextViewController.selectedFolderNameIndex = resultStr
-         
-         nextViewController.folderSharedUIDFromTodoList = self.folderSharedUID
-         self.present(nextViewController, animated:true, completion:nil)
-         
-         })
-         }
-         
-         */
-        
-        
-        
-        /* for k in 0...self.imageKeys.count-1 {
-         if((!(self.imageKeys[k].contains(userId))) && ((self.imageKeys[k].contains(userFolders[k])))){
-         print(self.imageKeys[k])
-         sharedUsersArray.append(self.imageKeys[k])
-         
-         }
-         
-         }
-         */
-        //  currentCell.imageCountTextField.text = String(folderImages.count)
-        
-        
-        
-        
-        print("curr text is :\(folderText)")
-        
-        //        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        //        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "showUsers") as! UsersListViewController
-        //
-        //        nextViewController.imagesFromFolder = folderImages
-        //        print(folderImages.count)
-        //        nextViewController.folderIndex = columnindex
-        //        nextViewController.sharedfolderName = folderText
-        //        self.present(nextViewController, animated:true, completion:nil)
-    }
+          }
     
     
     

@@ -9,25 +9,22 @@
 /* Begin PBXBuildFile section */
 		3BEBEB983B6017612FA8F435 /* Pods_PickAndRollTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC5A27FB04A639A7FBB2AC57 /* Pods_PickAndRollTests.framework */; };
 		5CA293D61F220ACE006362D1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA293D51F220ACE006362D1 /* LoginViewController.swift */; };
-		5CA293D81F220D2E006362D1 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA293D71F220D2E006362D1 /* SignUpViewController.swift */; };
-		5CB2DD061F3B1F1D00138B80 /* ToDoListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB2DD051F3B1F1D00138B80 /* ToDoListTableViewController.swift */; };
-		5CB2DD081F3B1F4000138B80 /* PhotoFromAlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB2DD071F3B1F4000138B80 /* PhotoFromAlbumsViewController.swift */; };
-		5CB2DD0A1F3B1F5E00138B80 /* UsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB2DD091F3B1F5E00138B80 /* UsersListViewController.swift */; };
-		5CC499E01F2894D2008E75F6 /* NewToDoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC499DF1F2894D2008E75F6 /* NewToDoTableViewController.swift */; };
+		5CA32F961F46FB1F007D73EB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5CA32F951F46FB1F007D73EB /* GoogleService-Info.plist */; };
 		5CC499E21F289535008E75F6 /* CustomFolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC499E11F289535008E75F6 /* CustomFolderCell.swift */; };
+		5CC499E61F29F0F1008E75F6 /* ToDoListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC499E51F29F0F1008E75F6 /* ToDoListTableViewController.swift */; };
 		5CC499E81F29F10D008E75F6 /* menuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC499E71F29F10D008E75F6 /* menuViewController.swift */; };
-		832158DB1F1E1B3B006FEF79 /* HomeMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832158DA1F1E1B3A006FEF79 /* HomeMenuViewController.swift */; };
+		5CF4A7AF1F459546004B8082 /* NewToDoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF4A7AE1F459546004B8082 /* NewToDoTableViewController.swift */; };
 		8321591E1F208FA0006FEF79 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8321591D1F208F9F006FEF79 /* ForgotPasswordViewController.swift */; };
 		835386B51F0CB24900D9114F /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835386B41F0CB24900D9114F /* CollectionViewCell.swift */; };
+		835386B91F0CB2B500D9114F /* PhotoFromAlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835386B81F0CB2B500D9114F /* PhotoFromAlbumsViewController.swift */; };
+		835386BB1F0E54BB00D9114F /* UsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835386BA1F0E54BA00D9114F /* UsersListViewController.swift */; };
 		835386BD1F0E573B00D9114F /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835386BC1F0E573B00D9114F /* CustomCell.swift */; };
 		839804841EF7CE93003A02F3 /* ImagePickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839804831EF7CE93003A02F3 /* ImagePickViewController.swift */; };
 		839804881EF7E689003A02F3 /* ImagePickViewControllerhandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839804871EF7E689003A02F3 /* ImagePickViewControllerhandler.swift */; };
 		8398048A1EF90610003A02F3 /* ViewControllerhandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839804891EF90610003A02F3 /* ViewControllerhandler.swift */; };
-		8398048E1EFBCF3D003A02F3 /* DisplayContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8398048D1EFBCF3C003A02F3 /* DisplayContactsViewController.swift */; };
 		839804911EFBD0FC003A02F3 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8398048F1EFBD0FC003A02F3 /* Contacts.framework */; };
 		839804921EFBD0FC003A02F3 /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839804901EFBD0FC003A02F3 /* ContactsUI.framework */; };
 		83B5969D1F021CEA00F200A6 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B5969C1F021CEA00F200A6 /* MobileCoreServices.framework */; };
-		83B596A71F02282D00F200A6 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B596A61F02282D00F200A6 /* MessageViewController.swift */; };
 		83B596F01F023E7F00F200A6 /* ELCAlbumPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B596D61F023E7F00F200A6 /* ELCAlbumPickerController.m */; };
 		83B596F11F023E7F00F200A6 /* ELCAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B596D81F023E7F00F200A6 /* ELCAsset.m */; };
 		83B596F21F023E7F00F200A6 /* ELCAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B596DA1F023E7F00F200A6 /* ELCAssetCell.m */; };
@@ -44,6 +41,7 @@
 		83B596FD1F023E7F00F200A6 /* ELCImagePickerDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B596EF1F023E7F00F200A6 /* ELCImagePickerDemoViewController.m */; };
 		83B5971F1F06347700F200A6 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B5971D1F06347700F200A6 /* Alamofire.framework */; };
 		83B597201F06347700F200A6 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B5971E1F06347700F200A6 /* AlamofireImage.framework */; };
+		83B8A0341F3D79490071CEB3 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B8A0331F3D79490071CEB3 /* MessageViewController.swift */; };
 		83BC42BE1EF3DBF500ADBD71 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BC42BD1EF3DBF500ADBD71 /* SideMenuViewController.swift */; };
 		83BC42C51EF3E9ED00ADBD71 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BC42C41EF3E9ED00ADBD71 /* SWRevealViewController.m */; };
 		83BC42C81EF3ED4700ADBD71 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BC42C71EF3ED4700ADBD71 /* MenuCell.swift */; };
@@ -57,14 +55,6 @@
 		83E5EF211EF3B7D80069BA8E /* PickAndRollUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E5EF201EF3B7D80069BA8E /* PickAndRollUITests.swift */; };
 		83E5EF301EF3BBBB0069BA8E /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E5EF2E1EF3BBBB0069BA8E /* DataService.swift */; };
 		83E5EF311EF3BBBB0069BA8E /* SignOutCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E5EF2F1EF3BBBB0069BA8E /* SignOutCode.swift */; };
-		83E5EF351EF3BE290069BA8E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83E5EF341EF3BE290069BA8E /* GoogleService-Info.plist */; };
-		83EB8D021F14883800FB9ECF /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EB8D011F14883800FB9ECF /* Fruit.swift */; };
-		83EB8D041F14884800FB9ECF /* FruitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EB8D031F14884800FB9ECF /* FruitCell.swift */; };
-		83EB8D061F14884F00FB9ECF /* FruitsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EB8D051F14884F00FB9ECF /* FruitsHeaderView.swift */; };
-		83EB8D081F14885400FB9ECF /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EB8D071F14885400FB9ECF /* DataSource.swift */; };
-		83EB8D0A1F1489FE00FB9ECF /* CreateAlbumVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EB8D091F1489FE00FB9ECF /* CreateAlbumVC.swift */; };
-		83EB8D0C1F1496BB00FB9ECF /* fruits.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83EB8D0B1F1496BB00FB9ECF /* fruits.plist */; };
-		83EB8D0E1F14972300FB9ECF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83EB8D0D1F14972300FB9ECF /* Images.xcassets */; };
 		ADE4542D812DF95D78FDC2BA /* Pods_PickAndRoll.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0F44489AB45ECF6E4603953 /* Pods_PickAndRoll.framework */; };
 		DE8DE1C7DD2AE6A09661DF73 /* Pods_PickAndRollUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 811F1F001F5F0F7237F59924 /* Pods_PickAndRollUITests.framework */; };
 /* End PBXBuildFile section */
@@ -88,29 +78,26 @@
 
 /* Begin PBXFileReference section */
 		5CA293D51F220ACE006362D1 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		5CA293D71F220D2E006362D1 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		5CB2DD051F3B1F1D00138B80 /* ToDoListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListTableViewController.swift; sourceTree = "<group>"; };
-		5CB2DD071F3B1F4000138B80 /* PhotoFromAlbumsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoFromAlbumsViewController.swift; sourceTree = "<group>"; };
-		5CB2DD091F3B1F5E00138B80 /* UsersListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersListViewController.swift; sourceTree = "<group>"; };
-		5CC499DF1F2894D2008E75F6 /* NewToDoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewToDoTableViewController.swift; sourceTree = "<group>"; };
+		5CA32F951F46FB1F007D73EB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Classes/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5CC499E11F289535008E75F6 /* CustomFolderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFolderCell.swift; sourceTree = "<group>"; };
+		5CC499E51F29F0F1008E75F6 /* ToDoListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListTableViewController.swift; sourceTree = "<group>"; };
 		5CC499E71F29F10D008E75F6 /* menuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = menuViewController.swift; sourceTree = "<group>"; };
+		5CF4A7AE1F459546004B8082 /* NewToDoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewToDoTableViewController.swift; sourceTree = "<group>"; };
 		68E72E627A2C9CAB7419A8B6 /* Pods-PickAndRoll.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PickAndRoll.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PickAndRoll/Pods-PickAndRoll.debug.xcconfig"; sourceTree = "<group>"; };
 		6D11A7D8DF22F5CCFA3C5E1B /* Pods-PickAndRollTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PickAndRollTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PickAndRollTests/Pods-PickAndRollTests.release.xcconfig"; sourceTree = "<group>"; };
 		78D7D20BA17916361D16C891 /* Pods-PickAndRoll.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PickAndRoll.release.xcconfig"; path = "Pods/Target Support Files/Pods-PickAndRoll/Pods-PickAndRoll.release.xcconfig"; sourceTree = "<group>"; };
 		811F1F001F5F0F7237F59924 /* Pods_PickAndRollUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PickAndRollUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		832158DA1F1E1B3A006FEF79 /* HomeMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeMenuViewController.swift; path = ../HomeMenuViewController.swift; sourceTree = "<group>"; };
 		8321591D1F208F9F006FEF79 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		835386B41F0CB24900D9114F /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		835386B81F0CB2B500D9114F /* PhotoFromAlbumsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoFromAlbumsViewController.swift; sourceTree = "<group>"; };
+		835386BA1F0E54BA00D9114F /* UsersListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersListViewController.swift; sourceTree = "<group>"; };
 		835386BC1F0E573B00D9114F /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		839804831EF7CE93003A02F3 /* ImagePickViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickViewController.swift; sourceTree = "<group>"; };
 		839804871EF7E689003A02F3 /* ImagePickViewControllerhandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickViewControllerhandler.swift; sourceTree = "<group>"; };
 		839804891EF90610003A02F3 /* ViewControllerhandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerhandler.swift; sourceTree = "<group>"; };
-		8398048D1EFBCF3C003A02F3 /* DisplayContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayContactsViewController.swift; sourceTree = "<group>"; };
 		8398048F1EFBD0FC003A02F3 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		839804901EFBD0FC003A02F3 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
 		83B5969C1F021CEA00F200A6 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		83B596A61F02282D00F200A6 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		83B596D51F023E7F00F200A6 /* ELCAlbumPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAlbumPickerController.h; sourceTree = "<group>"; };
 		83B596D61F023E7F00F200A6 /* ELCAlbumPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAlbumPickerController.m; sourceTree = "<group>"; };
 		83B596D71F023E7F00F200A6 /* ELCAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAsset.h; sourceTree = "<group>"; };
@@ -139,6 +126,7 @@
 		83B596EF1F023E7F00F200A6 /* ELCImagePickerDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCImagePickerDemoViewController.m; sourceTree = "<group>"; };
 		83B5971D1F06347700F200A6 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../Library/Developer/Xcode/DerivedData/PickAndRoll-cttjsgrhbmexleemffkjyooavbiy/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		83B5971E1F06347700F200A6 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = "../../../Library/Developer/Xcode/DerivedData/PickAndRoll-cttjsgrhbmexleemffkjyooavbiy/Build/Products/Debug-iphonesimulator/AlamofireImage/AlamofireImage.framework"; sourceTree = "<group>"; };
+		83B8A0331F3D79490071CEB3 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		83BC42B91EF3D9E100ADBD71 /* PickAndRoll-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PickAndRoll-Bridging-Header.h"; sourceTree = "<group>"; };
 		83BC42BD1EF3DBF500ADBD71 /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		83BC42C31EF3E9E200ADBD71 /* SWRevealViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -161,14 +149,6 @@
 		83E5EF221EF3B7D80069BA8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83E5EF2E1EF3BBBB0069BA8E /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		83E5EF2F1EF3BBBB0069BA8E /* SignOutCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignOutCode.swift; sourceTree = "<group>"; };
-		83E5EF341EF3BE290069BA8E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		83EB8D011F14883800FB9ECF /* Fruit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
-		83EB8D031F14884800FB9ECF /* FruitCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FruitCell.swift; sourceTree = "<group>"; };
-		83EB8D051F14884F00FB9ECF /* FruitsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FruitsHeaderView.swift; sourceTree = "<group>"; };
-		83EB8D071F14885400FB9ECF /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
-		83EB8D091F1489FE00FB9ECF /* CreateAlbumVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAlbumVC.swift; sourceTree = "<group>"; };
-		83EB8D0B1F1496BB00FB9ECF /* fruits.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = fruits.plist; sourceTree = "<group>"; };
-		83EB8D0D1F14972300FB9ECF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B2BD14531ACD16092C1C065D /* Pods-PickAndRollTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PickAndRollTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PickAndRollTests/Pods-PickAndRollTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C3BA24BCD89C945E3D59B3C9 /* Pods-PickAndRollUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PickAndRollUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PickAndRollUITests/Pods-PickAndRollUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DC5A27FB04A639A7FBB2AC57 /* Pods_PickAndRollTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PickAndRollTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,9 +205,9 @@
 		832159161F1F83DE006FEF79 /* CreateNewFolder */ = {
 			isa = PBXGroup;
 			children = (
-				5CB2DD051F3B1F1D00138B80 /* ToDoListTableViewController.swift */,
-				5CC499DF1F2894D2008E75F6 /* NewToDoTableViewController.swift */,
 				5CC499E11F289535008E75F6 /* CustomFolderCell.swift */,
+				5CF4A7AE1F459546004B8082 /* NewToDoTableViewController.swift */,
+				5CC499E51F29F0F1008E75F6 /* ToDoListTableViewController.swift */,
 			);
 			name = CreateNewFolder;
 			sourceTree = "<group>";
@@ -235,7 +215,7 @@
 		835386B31F0CB1FE00D9114F /* CollectioViewForPhotos */ = {
 			isa = PBXGroup;
 			children = (
-				5CB2DD071F3B1F4000138B80 /* PhotoFromAlbumsViewController.swift */,
+				835386B81F0CB2B500D9114F /* PhotoFromAlbumsViewController.swift */,
 				835386B41F0CB24900D9114F /* CollectionViewCell.swift */,
 			);
 			name = CollectioViewForPhotos;
@@ -316,13 +296,12 @@
 			isa = PBXGroup;
 			children = (
 				832159161F1F83DE006FEF79 /* CreateNewFolder */,
-				83EB8D001F1487F100FB9ECF /* NewAlbum */,
 				835386B31F0CB1FE00D9114F /* CollectioViewForPhotos */,
 				83B596D31F023E7F00F200A6 /* Classes */,
 				83BC42C71EF3ED4700ADBD71 /* MenuCell.swift */,
+				5CA32F951F46FB1F007D73EB /* GoogleService-Info.plist */,
+				83B8A0331F3D79490071CEB3 /* MessageViewController.swift */,
 				5CC499E71F29F10D008E75F6 /* menuViewController.swift */,
-				832158DA1F1E1B3A006FEF79 /* HomeMenuViewController.swift */,
-				83B596A61F02282D00F200A6 /* MessageViewController.swift */,
 				83BC42C31EF3E9E200ADBD71 /* SWRevealViewController.h */,
 				83BC42C61EF3E9F300ADBD71 /* memuDemo-Bridging-Header.h */,
 				83BC42C41EF3E9ED00ADBD71 /* SWRevealViewController.m */,
@@ -334,19 +313,16 @@
 				835386BC1F0E573B00D9114F /* CustomCell.swift */,
 				83E5EF071EF3B7D80069BA8E /* Assets.xcassets */,
 				83E5EF091EF3B7D80069BA8E /* LaunchScreen.storyboard */,
-				83E5EF341EF3BE290069BA8E /* GoogleService-Info.plist */,
 				83E5EF0C1EF3B7D80069BA8E /* Info.plist */,
 				83BC42B91EF3D9E100ADBD71 /* PickAndRoll-Bridging-Header.h */,
-				5CB2DD091F3B1F5E00138B80 /* UsersListViewController.swift */,
 				83BC42BD1EF3DBF500ADBD71 /* SideMenuViewController.swift */,
 				83BC42CD1EF3F5AA00ADBD71 /* DisplayMapViewController.swift */,
 				839804831EF7CE93003A02F3 /* ImagePickViewController.swift */,
 				839804871EF7E689003A02F3 /* ImagePickViewControllerhandler.swift */,
 				839804891EF90610003A02F3 /* ViewControllerhandler.swift */,
-				8398048D1EFBCF3C003A02F3 /* DisplayContactsViewController.swift */,
+				835386BA1F0E54BA00D9114F /* UsersListViewController.swift */,
 				8321591D1F208F9F006FEF79 /* ForgotPasswordViewController.swift */,
 				5CA293D51F220ACE006362D1 /* LoginViewController.swift */,
-				5CA293D71F220D2E006362D1 /* SignUpViewController.swift */,
 			);
 			path = PickAndRoll;
 			sourceTree = "<group>";
@@ -367,20 +343,6 @@
 				83E5EF221EF3B7D80069BA8E /* Info.plist */,
 			);
 			path = PickAndRollUITests;
-			sourceTree = "<group>";
-		};
-		83EB8D001F1487F100FB9ECF /* NewAlbum */ = {
-			isa = PBXGroup;
-			children = (
-				83EB8D0D1F14972300FB9ECF /* Images.xcassets */,
-				83EB8D0B1F1496BB00FB9ECF /* fruits.plist */,
-				83EB8D011F14883800FB9ECF /* Fruit.swift */,
-				83EB8D031F14884800FB9ECF /* FruitCell.swift */,
-				83EB8D051F14884F00FB9ECF /* FruitsHeaderView.swift */,
-				83EB8D071F14885400FB9ECF /* DataSource.swift */,
-				83EB8D091F1489FE00FB9ECF /* CreateAlbumVC.swift */,
-			);
-			name = NewAlbum;
 			sourceTree = "<group>";
 		};
 		E3D51D54199F240945560132 /* Frameworks */ = {
@@ -519,14 +481,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				83B596FA1F023E7F00F200A6 /* Overlay.png in Resources */,
+				5CA32F961F46FB1F007D73EB /* GoogleService-Info.plist in Resources */,
 				83B596F71F023E7F00F200A6 /* ELCAlbumPickerController.xib in Resources */,
 				83B596FB1F023E7F00F200A6 /* Overlay@2x.png in Resources */,
-				83E5EF351EF3BE290069BA8E /* GoogleService-Info.plist in Resources */,
-				83EB8D0E1F14972300FB9ECF /* Images.xcassets in Resources */,
 				83E5EF0B1EF3B7D80069BA8E /* LaunchScreen.storyboard in Resources */,
 				83B596F81F023E7F00F200A6 /* ELCAssetPicker.xib in Resources */,
 				83B596F91F023E7F00F200A6 /* ELCAssetTablePicker.xib in Resources */,
-				83EB8D0C1F1496BB00FB9ECF /* fruits.plist in Resources */,
 				83E5EF081EF3B7D80069BA8E /* Assets.xcassets in Resources */,
 				83E5EF061EF3B7D80069BA8E /* Main.storyboard in Resources */,
 			);
@@ -692,20 +652,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				83B596FC1F023E7F00F200A6 /* ELCImagePickerDemoAppDelegate.m in Sources */,
-				832158DB1F1E1B3B006FEF79 /* HomeMenuViewController.swift in Sources */,
-				83EB8D041F14884800FB9ECF /* FruitCell.swift in Sources */,
+				83B8A0341F3D79490071CEB3 /* MessageViewController.swift in Sources */,
 				83BC42C81EF3ED4700ADBD71 /* MenuCell.swift in Sources */,
+				835386B91F0CB2B500D9114F /* PhotoFromAlbumsViewController.swift in Sources */,
 				83B596F61F023E7F00F200A6 /* ELCOverlayImageView.m in Sources */,
-				5CB2DD0A1F3B1F5E00138B80 /* UsersListViewController.swift in Sources */,
-				83EB8D021F14883800FB9ECF /* Fruit.swift in Sources */,
-				83EB8D081F14885400FB9ECF /* DataSource.swift in Sources */,
+				835386BB1F0E54BB00D9114F /* UsersListViewController.swift in Sources */,
 				83B596F21F023E7F00F200A6 /* ELCAssetCell.m in Sources */,
 				83B596F51F023E7F00F200A6 /* ELCImagePickerController.m in Sources */,
 				83B596FD1F023E7F00F200A6 /* ELCImagePickerDemoViewController.m in Sources */,
 				5CC499E81F29F10D008E75F6 /* menuViewController.swift in Sources */,
 				839804841EF7CE93003A02F3 /* ImagePickViewController.swift in Sources */,
-				5CB2DD061F3B1F1D00138B80 /* ToDoListTableViewController.swift in Sources */,
-				83EB8D0A1F1489FE00FB9ECF /* CreateAlbumVC.swift in Sources */,
+				5CC499E61F29F0F1008E75F6 /* ToDoListTableViewController.swift in Sources */,
 				83B596F41F023E7F00F200A6 /* ELCConsole.m in Sources */,
 				83E5EF311EF3BBBB0069BA8E /* SignOutCode.swift in Sources */,
 				83B596F31F023E7F00F200A6 /* ELCAssetTablePicker.m in Sources */,
@@ -715,18 +672,13 @@
 				835386B51F0CB24900D9114F /* CollectionViewCell.swift in Sources */,
 				83B596F01F023E7F00F200A6 /* ELCAlbumPickerController.m in Sources */,
 				83E5EF031EF3B7D80069BA8E /* ViewController.swift in Sources */,
-				83B596A71F02282D00F200A6 /* MessageViewController.swift in Sources */,
 				5CA293D61F220ACE006362D1 /* LoginViewController.swift in Sources */,
 				83E5EF011EF3B7D80069BA8E /* AppDelegate.swift in Sources */,
-				5CA293D81F220D2E006362D1 /* SignUpViewController.swift in Sources */,
-				83EB8D061F14884F00FB9ECF /* FruitsHeaderView.swift in Sources */,
 				83B596F11F023E7F00F200A6 /* ELCAsset.m in Sources */,
 				83BC42CE1EF3F5AA00ADBD71 /* DisplayMapViewController.swift in Sources */,
 				83BC42BE1EF3DBF500ADBD71 /* SideMenuViewController.swift in Sources */,
-				8398048E1EFBCF3D003A02F3 /* DisplayContactsViewController.swift in Sources */,
 				83BC42C51EF3E9ED00ADBD71 /* SWRevealViewController.m in Sources */,
-				5CC499E01F2894D2008E75F6 /* NewToDoTableViewController.swift in Sources */,
-				5CB2DD081F3B1F4000138B80 /* PhotoFromAlbumsViewController.swift in Sources */,
+				5CF4A7AF1F459546004B8082 /* NewToDoTableViewController.swift in Sources */,
 				8321591E1F208FA0006FEF79 /* ForgotPasswordViewController.swift in Sources */,
 				839804881EF7E689003A02F3 /* ImagePickViewControllerhandler.swift in Sources */,
 				5CC499E21F289535008E75F6 /* CustomFolderCell.swift in Sources */,
@@ -884,12 +836,13 @@
 			baseConfigurationReference = 68E72E627A2C9CAB7419A8B6 /* Pods-PickAndRoll.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 2CRRHEMXQH;
 				INFOPLIST_FILE = PickAndRoll/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cispl.PickAndRoll;
+				PRODUCT_BUNDLE_IDENTIFIER = cispl.PickAndRollc2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "PickAndRoll/PickAndRoll-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -902,12 +855,13 @@
 			baseConfigurationReference = 78D7D20BA17916361D16C891 /* Pods-PickAndRoll.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 2CRRHEMXQH;
 				INFOPLIST_FILE = PickAndRoll/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cispl.PickAndRoll;
+				PRODUCT_BUNDLE_IDENTIFIER = cispl.PickAndRollc2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "PickAndRoll/PickAndRoll-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

@@ -34,6 +34,11 @@
 			<key>orderHint</key>
 			<integer>6</integer>
 		</dict>
+		<key>FirebaseStorageCache.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>15</integer>
+		</dict>
 		<key>GTMOAuth2.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -87,6 +92,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>2659F674E5DD75C2B23395DE8D991C7C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>38ACA430605AFB4229712A18BDDF5086</key>
 		<dict>
 			<key>primary</key>
@@ -117,6 +127,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>AAA761E9F29C3B5665AFE5BBC01DB9C9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>B1C4AAFAF49036C7007633DAA3C806AD</key>
 		<dict>
 			<key>primary</key>
@@ -132,7 +147,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>C84CE71E41C574C85030B3634FB29798</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C86BBE9AF10BD4468C5D7AAC4FD80E87</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D081EBEF30A37D26FF7FDCE4DC871F9B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -143,6 +168,11 @@
 			<true/>
 		</dict>
 		<key>E396A93E4C79B22B7816E9F02F62ECED</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E976135CDB0067D67AA2A6FA91E7D919</key>
 		<dict>
 			<key>primary</key>
 			<true/>

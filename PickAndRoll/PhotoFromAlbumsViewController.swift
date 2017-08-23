@@ -31,15 +31,19 @@ class PhotoFromAlbumsViewController: UIViewController,UICollectionViewDelegate,U
     override func viewDidLoad() {
         super.viewDidLoad()
         
+            
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "signin-bg")
+        self.view.insertSubview(backgroundImage, at: 0)
+        
+      
         collectionView.backgroundView = UIImageView(image: UIImage(named: "signin-bg"))
         let myUserId = FIRAuth.auth()!.currentUser!.uid
-        print("myuserd id is-->\(myUserId) and \(self.imagesArryFolder)")
+        print("myuserd id is-->\(myUserId) and \(selectedFolderNameIndex)")
         galleryName = selectedFolderNameIndex
         
         self.imageArrayLength = self.imagesArryFolder.count
-        
-        
-        let kUserDefault = UserDefaults.standard
+           let kUserDefault = UserDefaults.standard
         kUserDefault.set(folderSharedUIDFromTodoList, forKey: "nameArray")
         kUserDefault.set(selectedFolderNameIndex, forKey: "FolderName")
         
@@ -67,8 +71,6 @@ class PhotoFromAlbumsViewController: UIViewController,UICollectionViewDelegate,U
                         let dataImage = UIImage(data: data as Data)
                         self.bigtitle = dataImage
                         self.test.append(self.bigtitle)
-                        
-                      
                     }
                     
                 }
@@ -77,7 +79,8 @@ class PhotoFromAlbumsViewController: UIViewController,UICollectionViewDelegate,U
         }
       
     }
-   
+    
+    
     //this function is fetching the json from URL
     
     
@@ -94,25 +97,22 @@ class PhotoFromAlbumsViewController: UIViewController,UICollectionViewDelegate,U
         
         collectionView.allowsMultipleSelection = true
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
+                cell.lblName.isHidden = true
                cell.imgImage.image = self.test[indexPath.row]
-        cell.lblName.isHidden = true
         
         return cell
     }
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let width = collectionView.frame.width / 4 - 1
-//        
-//        return CGSize(width: width, height: width)
-//    }
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 1.0
-//    }
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        return 1.0
-//    }
+ 
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 1.0
+    }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 1.0
+    }
+ 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-             let cell = collectionView.cellForItem(at: indexPath)
+               let cell = collectionView.cellForItem(at: indexPath)
         cell?.contentView.backgroundColor = UIColor.green
         
         
@@ -124,10 +124,7 @@ class PhotoFromAlbumsViewController: UIViewController,UICollectionViewDelegate,U
     }
     
     @IBAction func uploadNewPhotoTapped(_ sender: Any) {
-               if let resultController = storyboard!.instantiateViewController(withIdentifier: "photos") as? ELCImagePickerController {
-            
-            //   resultController.selectedFolderName = selectedFolderNameIndex
-            present(resultController, animated: true, completion: nil)
-        }
+      
+     
     }
 }

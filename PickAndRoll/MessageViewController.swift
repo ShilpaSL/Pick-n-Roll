@@ -27,16 +27,60 @@ class MessageViewController: UIViewController,UINavigationBarDelegate,UINavigati
         revealViewController().rearViewRevealWidth = 200
         menu.target = revealViewController()
         menu.action = #selector(SWRevealViewController.revealToggle(_:))
+               profileImage.layer.borderWidth = 1
+        profileImage.layer.masksToBounds = false
+        profileImage.layer.borderColor = UIColor.black.cgColor
+        profileImage.layer.cornerRadius = profileImage.frame.height/2
+        profileImage.clipsToBounds = true
         
         
+        
+            //Get profileImage
+        
+        let urlImage = NSURL(string: "https://pick-n-roll.firebaseio.com/Users/\(FIRAuth.auth()!.currentUser!.uid)/profileImageUrl.json")
+        //fetching the data from the url
+        
+        URLSession.shared.dataTask(with: (urlImage as? URL)!, completionHandler: {(data, response, error) -> Void in
+            
+            if let jsonObj = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? NSString {
+                OperationQueue.main.addOperation({
+                    
+                    
+                })
+                
+                
+                DispatchQueue.main.async(execute: {
+                    
+                    if let url = NSURL(string: jsonObj! as String) {
+                        
+                        if let imageData = NSData(contentsOf: url as URL) {
+                            
+                            let str64 = imageData.base64EncodedData(options: .lineLength64Characters)
+                            
+                            let data: NSData = NSData(base64Encoded: str64 , options: .ignoreUnknownCharacters)!
+                            
+                            let dataImage = UIImage(data: data as Data)
+                            
+                            self.profileImage.image = dataImage
+                            
+                        }
+                        
+                    }
+                    
+                })
+                
+            }
+            
+        }).resume()
+        
+
         emailLabel.text = FIRAuth.auth()!.currentUser!.email
         profileImage.isUserInteractionEnabled = true
         var TapGesture = UITapGestureRecognizer(target: self, action: "ImageTapped")
         self.profileImage.addGestureRecognizer(TapGesture)
     }
     
-    
-    
+   
     func ImageTapped() {
         let picker = UIImagePickerController()
         picker.delegate = self
@@ -59,12 +103,7 @@ class MessageViewController: UIViewController,UINavigationBarDelegate,UINavigati
         if let selectedImage = selectedImageFromPicker {
             profileImage.image = selectedImage
         }
-        
-        
-        
-        
-        
-        let imageName = NSUUID().uuidString
+              let imageName = NSUUID().uuidString
         let storageRef = FIRStorage.storage().reference().child("pickroll_profile_images").child("\(imageName).png")
         if let uploadData = UIImagePNGRepresentation(self.profileImage.image!) {
             
@@ -96,7 +135,7 @@ class MessageViewController: UIViewController,UINavigationBarDelegate,UINavigati
 
     func registerUserIntoDatabaseWithUID(uid:String,values:[String:AnyObject]){
         
-        let ref = FIRDatabase.database().reference(fromURL: "https://pickandroll-e0897.firebaseio.com/")
+        let ref = FIRDatabase.database().reference(fromURL: "https://pick-n-roll.firebaseio.com/")
         // let userReference = ref.child("UserDetails").child("User1").child(uid)
         let userReference = ref.child("Users").child(uid)
         
@@ -113,10 +152,6 @@ class MessageViewController: UIViewController,UINavigationBarDelegate,UINavigati
         
     }
     
-    
-    
-
-    
-    
+       
     
 }
